@@ -12,7 +12,7 @@ class AppServiceProvider extends Provider
 {
     public function boot()
     {
-        // Composer::view("app.index", function (){
+        // Composer::view("app.index",  function (){
         //     $ads = Ads::all();
         //     $sumArea = 0;
         //     foreach ($ads as $advertise)
