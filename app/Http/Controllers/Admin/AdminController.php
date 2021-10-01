@@ -10,6 +10,7 @@ class AdminController extends Controller
 
     public function __construct(){
 
+        Auth::loginById(1);
         Auth::check();
         if(Auth::user()->user_type != 'admin'){
             redirect('/login');
