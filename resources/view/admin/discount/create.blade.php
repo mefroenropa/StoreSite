@@ -44,6 +44,8 @@
                             <option value="120">120 ساعت</option>
                         </select>
                     </div>
+                    <input type="submit" value="ثبت" class="btn btn-success">
+
                 </form>
             
             </div>

@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('head-tag')
-    <title>افزودن برند جدید</title>
+    <title>ویرایش برند</title>
     <link rel="stylesheet" type="text/css" href="<?= asset('src/plugins/jquery-steps/jquery.steps.css')?>">
 
 @endsection
@@ -14,7 +14,7 @@
             <div class="clearfix">
                 <div class="clearfix">
                     <div class="pull-right">
-                        <h4 class="text-blue h4 text-right"> افزودن برند </h4>
+                        <h4 class="text-blue h4 text-right"> ویرایش برند </h4>
                     </div>
                     <div class="pull-left">
                         <a href="index" class="btn btn-danger d-inline">بازگشت</a>
@@ -36,6 +36,7 @@
                                 <label class="custom-file-label">Choose file</label>
                             </div>
                         </div>
+                        <input type="submit" value="ثبت" class="btn btn-success">
                     
                 </form>
             

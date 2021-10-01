@@ -38,6 +38,8 @@
                             <option value="0">وسایل خانه</option>
                         </select>
                     </div>
+                    <input type="submit" value="ثبت" class="btn btn-success">
+
                 </form>
             
             </div>

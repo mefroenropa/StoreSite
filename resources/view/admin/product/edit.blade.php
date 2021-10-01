@@ -53,7 +53,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>برند مورد نظر را انتخاب کنید :</label>
-                                        <select name="brand_id" class="custom-select form-control">
+                                        <select name="brand_id" class="custom-select form-control text-right">
                                             <option value="">Select City</option>
                                             <option value="Amsterdam">India</option>
                                             <option value="Berlin">UK</option>
@@ -65,7 +65,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>دسته بندی مورد نظر را انتخاب کنید :</label>
-                                        <select name="cat_id" class="custom-select form-control">
+                                        <select name="cat_id" class="custom-select form-control text-right">
                                             <option value="">Select City</option>
                                             <option value="Amsterdam">India</option>
                                             <option value="Berlin">UK</option>

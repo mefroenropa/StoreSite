@@ -43,9 +43,9 @@
 							<td> الکترونیک </td>
 							<td> علیرضا جوادی </td>
 
-							<td> <h6 class="alert alert-danger">29</h6> </td>
+							<td> 25 </td>
 							
-							<td> <h6 class="alert alert-primary">ندارد</h6> </td>
+							<td> ندارد </td>
 							
 							<td>
 								<div class="dropdown">

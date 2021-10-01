@@ -36,6 +36,8 @@
                                 <label class="custom-file-label">Choose file</label>
                             </div>
                         </div>
+
+                        <input type="submit" value="ثبت" class="btn btn-success">
                     
                 </form>
             

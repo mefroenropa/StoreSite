@@ -41,7 +41,7 @@
 							<td> سامسونگ </td>
 							<td> علیرضا جوادی </td>
 
-							<td> <h6 class="alert alert-danger">29</h6> </td>
+							<td> 28 </td>
 							
 							
 							<td>

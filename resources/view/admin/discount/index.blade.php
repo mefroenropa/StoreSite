@@ -28,7 +28,7 @@
 						<tr>
 							<th># </th>
 
-							<th class="table-plus datatable-nosort">متن</th>
+							<th class="table-plus datatable-nosort">کد</th>
 							<th>سازنده </th>
 							<th> درصد تخفیف / مبلغ تخفیف</th>
 							<th>تاریخ انقضا</th>

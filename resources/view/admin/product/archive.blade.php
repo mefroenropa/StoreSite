@@ -44,7 +44,7 @@
 							</td>
 							<td>علیرضا جوادی</td>
 							<td>الکترونیک</td>
-							<td ><p class="alert alert-warning">وارد نشده</p></td>
+							<td >25</td>
 							<td>1</td>
 							<td>
 								<div class="dropdown">
