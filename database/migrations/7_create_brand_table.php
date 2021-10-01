@@ -3,7 +3,6 @@ return ["
 
 CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
-  `product_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
   `body` text COLLATE utf8mb4_persian_ci DEFAULT NULL,
@@ -21,7 +20,6 @@ CREATE TABLE `brands` (
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
