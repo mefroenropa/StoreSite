@@ -33,6 +33,18 @@ trait HasSoftDelete{
         return [];
     }
 
+    protected function archiveMethod(){
+        $this->setSql("SELECT ".$this->getTableName().".* FROM ".$this->getTableName());
+        $this->setWhere("AND", $this->getAttributeName($this->deletedAt)." IS NOT NULL");
+        $statement = $this->executeQuery();
+        $data = $statement->fetchAll();
+        if ($data){
+           $this->arrayToObjects($data);
+           return $this->collection;
+        }
+        return [];
+    }
+
     protected function findMethod($id){
         $this->resetQuery();
         $this->setSql("SELECT ".$this->getTableName().".* FROM ".$this->getTableName());
