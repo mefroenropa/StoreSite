@@ -10,7 +10,8 @@ class HomeController extends Controller
 
     public function index(){
  
-        return view('app.404');
+        return view('app.index');
+      
     }
 
 }
