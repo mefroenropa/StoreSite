@@ -1,4 +1,4 @@
-$(".tab-wizard").steps({
+$(".tab-wizard2").steps({
 	
 	headerTag: "h5",
 	bodyTag: "section",
@@ -15,7 +15,7 @@ $(".tab-wizard").steps({
 	}
 });
 
-$(".tab-wizard2").steps({
+$(".tab-wizard").steps({
 	headerTag: "h5",
 	bodyTag: "section",
 	transitionEffect: "fade",
