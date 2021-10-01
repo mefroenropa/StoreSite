@@ -4,13 +4,8 @@ function currentUserId(){
     return \System\Auth\Auth::user()->id;
 }
 
-
-function sidebarActive($url, $contain = true)
-{
-    if ($contain)
-        return (strpos(currentUrl(), $url) === 0) ? 'active' : '';
-    else
-        return  $url === currentUrl() ? 'active' : '';
+function haveParent($category){
+    return $category->parent_id == 0 ? "ندارد" : $category->parent()->name;
 }
 
 function errorClass($name)
@@ -34,24 +29,6 @@ function fullUsername(object $user)
     return $user->first_name . " " . $user->last_name;
 }
 
-function approvedOrNot($approved)
-{
-    if ($approved == 1) {
-        return '<span class="text-success">تاید شده</span>';
-    } else {
-        return '<span class="text-danger">در انتظار تایید</span>';
-    }
-}
-
-
-function sellStatus($status)
-{
-    if ($status == 1) {
-        return '<span class="status rent">اجاره</span>';
-    } else {
-        return '<span class="status sale">خرید</span>';
-    }
-}
 
 function paginate($data, $perPage)
 {
