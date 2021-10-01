@@ -3,6 +3,7 @@ return ["
 CREATE TABLE `categories` (
   `id` bigint(11) NOT NULL,
   `name` varchar(244) COLLATE utf8mb4_persian_ci NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `parent_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -17,7 +18,8 @@ CREATE TABLE `categories` (
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
