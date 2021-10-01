@@ -2,7 +2,6 @@
 
 @section('head-tag')
     <title>دسته بندی ها</title>
-    <link rel="stylesheet" type="text/css" href="<?= asset('src/plugins/jquery-steps/jquery.steps.css')?>">
 
 @endsection
 
@@ -17,8 +16,8 @@
                     <p class="mb-30 text-right">لیست همه دسته بندی ها  </p>
                 </div>
                 <div class="pull-left">
-                    <a href="index" class="btn btn-success d-inline">افزودن دسته بندی جدید</a>
-                    <a href="index" class="btn btn-warning d-inline">دسته بندی هایه بایگانی شده</a>
+                    <a href="<?= route('admin.category.create') ?>" class="btn btn-success d-inline">افزودن دسته بندی جدید</a>
+                    <a href="<?= route('admin.category.archive') ?>" class="btn btn-warning d-inline">دسته بندی هایه بایگانی شده</a>
                 </div>
             </div>
  
@@ -37,15 +36,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr >
-							<td>1</td>
+						<?php $numberPlus =1; foreach($categories as $category){ ?>
+							<tr >
+							<td><?= $numberPlus; ?></td>
 
-							<td> الکترونیک </td>
-							<td> علیرضا جوادی </td>
+							<td> <?= $category->name ?> </td>
+							<td> <?= fullUsername($category->user()) ?>  </td>
 
-							<td> 25 </td>
+							<td> <?= count($category->products()->get()) ?> </td>
 							
-							<td> ندارد </td>
+							<td> <?= haveParent($category) ?> </td>
 							
 							<td>
 								<div class="dropdown">
@@ -53,15 +53,24 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> ویرایش</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> حذف</a>
+										<a class="dropdown-item" href="<?= route('admin.category.edit', [$category->id]) ?>"><i class="dw dw-edit2"></i> ویرایش</a>
+										<form action="<?= route('admin.category.delete', [$category->id]) ?>" method="POST">
+										
+											<input type="hidden" name="_method" value="delete">
+
+											<button class="dropdown-item" type="submit"><i class="dw dw-delete-3"></i> حذف</button>
+											
+
+										</form>
+										
 									</div>
 								</div>
 							</td>
 						</tr>
 
-
-
+						<?php $numberPlus++;} ?>
+						
+						
 						
 					</tbody>
 				</table>

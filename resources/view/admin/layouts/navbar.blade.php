@@ -16,7 +16,7 @@
                         <span class="micon dw dw-house-1"></span><span class="mtext">خانه</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index">پنل مدیریت</a></li>
+                        <li><a href="<?= route('admin.index') ?>">پنل مدیریت</a></li>
                     </ul>
                 </li>
 
@@ -25,8 +25,8 @@
                         <span class="micon dw dw-house-1"></span><span class="mtext">محصولات</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index"> محصولات </a></li>
-                        <li><a href="index">  دسته بندی ها </a></li>
+                        <li><a href="<?= route('admin.product.index') ?>"> محصولات </a></li>
+                        <li><a href="<?= route('admin.category.index') ?>">  دسته بندی ها </a></li>
                         <li><a href="index"> کد تخفیف ها</a></li>
                         <li><a href="index"> انبار داری</a></li>
                     </ul>

@@ -17,8 +17,7 @@
                     <p class="mb-30 text-right">لیست همه دسته بندی ها  </p>
                 </div>
                 <div class="pull-left">
-                    <a href="index" class="btn btn-success d-inline">افزودن دسته بندی جدید</a>
-                    <a href="index" class="btn btn-warning d-inline">دسته بندی هایه بایگانی شده</a>
+                        <a href="<?= route('admin.category.index') ?>" class="btn btn-danger d-inline">بازگشت</a>
                 </div>
             </div>
  

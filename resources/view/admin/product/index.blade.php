@@ -17,8 +17,8 @@
                     <p class="mb-30 text-right">لیست همه محصولات  </p>
                 </div>
                 <div class="pull-left">
-                    <a href="index" class="btn btn-success d-inline">افزودن محصول جدید</a>
-                    <a href="index" class="btn btn-warning d-inline">محصولات بایگانی شده</a>
+                    <a href="<?= route('admin.product.create') ?>" class="btn btn-success d-inline">افزودن محصول جدید</a>
+                    <a href="<?= route('admin.product.archive') ?>" class="btn btn-warning d-inline">محصولات بایگانی شده</a>
                 </div>
             </div>
  
@@ -30,23 +30,25 @@
 							<th>نام محصول</th>
 							<th>فروشنده</th>
 							<th>دسته بندی</th>
-							<th>تعداد</th>
+							<th>برند</th>
 							<th>قیمت</th>
 							<th class="datatable-nosort">عملیات</th>
 						</tr>
 					</thead>
 					<tbody>
+						<?php foreach ($products as $product) { ?>
+							
 						<tr >
 							<td class="table-plus">
-								<img src="<?= asset('vendors/images/photo9.jpg')?>" width="70" height="70" alt="">
+								<img src="<?= asset('<?= $product->photo()->image ?>')?>" width="70" height="70" alt="">
 							</td>
 							<td>
-                                لپتاپ ایسوس
+                                 <?= $product->title ?>
 							</td>
-							<td>علیرضا جوادی</td>
-							<td>الکترونیک</td>
-							<td >وارد نشده</td>
-							<td>1</td>
+							<td> <?= fullUsername($product->user()) ?></td>
+							<td><?= $product->category()->name ?></td>
+							<td ><?= $product->brand()->name ?></td>
+							<td><?= $product->amount ?></td>
 							<td>
 								<div class="dropdown">
 									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -60,6 +62,7 @@
 								</div>
 							</td>
 						</tr>
+						<?php } ?>
 
 
 
