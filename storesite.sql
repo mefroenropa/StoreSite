@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2021 at 08:46 AM
+-- Generation Time: Oct 01, 2021 at 06:02 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -79,6 +79,7 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `categories` (
   `id` bigint(11) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
   `name` varchar(244) COLLATE utf8mb4_persian_ci NOT NULL,
   `parent_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -261,7 +262,8 @@ ALTER TABLE `cart`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `comments`
@@ -420,6 +422,12 @@ ALTER TABLE `brands`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `comments`
