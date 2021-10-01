@@ -1,4 +1,4 @@
-$(".tab-wizard2").steps({
+$(".tab-wizard1").steps({
 	
 	headerTag: "h5",
 	bodyTag: "section",
@@ -11,11 +11,12 @@ $(".tab-wizard2").steps({
 		$('.steps .current').prevAll().addClass('disabled');
 	},
 	onFinished: function (event, currentIndex) {
+		alert('hi');
 		$('#success-modal').modal('show');
 	}
 });
 
-$(".tab-wizard").steps({
+$(".tab-wizard2").steps({
 	headerTag: "h5",
 	bodyTag: "section",
 	transitionEffect: "fade",
