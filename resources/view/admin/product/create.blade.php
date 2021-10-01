@@ -126,6 +126,7 @@
                                             <input type="file" class="custom-file-input">
                                             <label class="custom-file-label">Choose file</label>
                                         </div>
+                                    </div>
                                 </div>
                                     
                             </div>
