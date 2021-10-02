@@ -60,8 +60,11 @@ class Request
     protected function postAttributes()
     {
         foreach($_POST as $key => $value){
-            $this->$key = htmlentities($value);
-            $this->request[$key] = htmlentities($value);
+            // $this->$key = htmlentities($value);
+            // $this->request[$key] = htmlentities($value);
+
+            $this->$key = $value;
+            $this->request[$key] = $value;
         }
     }
 
