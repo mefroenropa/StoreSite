@@ -10,7 +10,8 @@ class HomeController extends Controller
 
     public function index(){
  
-        return view('admin.store.create');
+        // return view('admin.store.create');
+        return redirect('/admin');
       
     }
 

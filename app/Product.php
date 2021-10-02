@@ -21,7 +21,12 @@ class Product extends Model
 
     public function photo(){
         foreach($this->galleries()->get() as $photo){
-            return $photo->isFirst == 0 ? '' : $photo;
+            if($photo->isFirst == 1){
+                return $photo;
+            }else{
+                continue;
+            }
+            
         }
     }
 
