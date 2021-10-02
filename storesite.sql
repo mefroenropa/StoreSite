@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2021 at 11:29 AM
+-- Generation Time: Oct 02, 2021 at 06:34 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -47,7 +47,7 @@ CREATE TABLE `brands` (
   `id` bigint(11) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
-  `body` text COLLATE utf8mb4_persian_ci DEFAULT NULL,
+  `image` text COLLATE utf8mb4_persian_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -57,8 +57,14 @@ CREATE TABLE `brands` (
 -- Dumping data for table `brands`
 --
 
-INSERT INTO `brands` (`id`, `user_id`, `name`, `body`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'sumsong', NULL, '2021-10-01 21:19:22', NULL, NULL);
+INSERT INTO `brands` (`id`, `user_id`, `name`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'sumsong', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_38_19_40.jpg\";', '2021-10-01 21:19:22', '2021-10-02 19:08:19', NULL),
+(2, 1, 'apple', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_09_44_49.png\";', '2021-10-02 18:39:45', NULL, NULL),
+(3, 1, 'sumsong', NULL, '2021-10-02 18:53:13', NULL, '2021-10-02 18:53:58'),
+(4, 1, 'samsung', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_32_48_78.jpg\";', '2021-10-02 19:02:48', NULL, '2021-10-02 19:03:52'),
+(5, 1, 'asdas', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_33_42_11.jpg\";', '2021-10-02 19:03:42', NULL, '2021-10-02 19:03:49'),
+(6, 1, 'html', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_35_42_65.jpg\";', '2021-10-02 19:05:42', NULL, '2021-10-02 19:05:46'),
+(7, 1, 'asus', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_43_43_30.jpg\";', '2021-10-02 19:13:43', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,7 +106,10 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `user_id`, `name`, `parent_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 'الکترونیکی', 0, '2021-10-01 21:23:03', '2021-10-01 21:49:00', NULL),
 (2, 1, 'تبلت', 1, '2021-10-01 21:25:16', NULL, NULL),
-(3, 1, 'لپ تاپ', 1, '2021-10-01 21:44:57', NULL, NULL);
+(3, 1, 'لپ تاپ', 1, '2021-10-01 21:44:57', NULL, '2021-10-02 16:09:06'),
+(4, 1, 'لپ تاپ', 1, '2021-10-02 19:14:42', NULL, NULL),
+(5, 1, 'خانگی', 0, '2021-10-02 19:14:57', NULL, NULL),
+(6, 1, 'تلوزیون', 5, '2021-10-02 19:15:12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,6 +133,35 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `discounts`
+--
+
+CREATE TABLE `discounts` (
+  `id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `code` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `value` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `type` enum('0','1') COLLATE utf8mb4_persian_ci NOT NULL,
+  `timeToDate` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `discounts`
+--
+
+INSERT INTO `discounts` (`id`, `user_id`, `code`, `value`, `type`, `timeToDate`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, '', '50%', '0', '24', '2021-10-02 19:49:24', '0000-00-00 00:00:00', '2021-10-02 20:00:25'),
+(2, 1, '', '30%', '0', '120', '2021-10-02 20:00:36', '0000-00-00 00:00:00', '2021-10-02 20:01:13'),
+(3, 1, 'MFD-14453626', '30%', '0', '120', '2021-10-02 20:01:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 1, 'MFD-1011262', '50,000', '1', '120', '2021-10-02 20:01:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 1, 'MFD-64736240', '50%', '0', '24', '2021-10-02 20:02:17', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `galleries`
 --
 
@@ -137,6 +175,24 @@ CREATE TABLE `galleries` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `galleries`
+--
+
+INSERT INTO `galleries` (`id`, `product_id`, `user_id`, `isFirst`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(10, 11, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_14_44_08_26.jpg', '2021-10-02 16:14:09', '2021-10-02 16:56:15', NULL),
+(11, 11, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_44_12_68.jpg', '2021-10-02 16:14:13', NULL, NULL),
+(12, 11, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_44_19_76.jpg', '2021-10-02 16:14:20', '2021-10-02 16:56:13', NULL),
+(13, 12, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_47_07_41.jpg', '2021-10-02 16:17:08', '2021-10-02 16:17:46', '2021-10-02 16:18:12'),
+(14, 12, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_47_12_77.jpg', '2021-10-02 16:17:13', '2021-10-02 16:55:38', NULL),
+(15, 12, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_14_47_18_39.jpg', '2021-10-02 16:17:18', '2021-10-02 16:18:00', '2021-10-02 16:18:10'),
+(16, 12, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_14_48_40_38.png', '2021-10-02 16:18:41', '2021-10-02 16:18:46', NULL),
+(17, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_15_26_41_12.png', '2021-10-02 16:56:42', NULL, NULL),
+(18, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_15_26_47_18.png', '2021-10-02 16:56:47', NULL, NULL),
+(19, 13, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_15_26_51_39.png', '2021-10-02 16:56:51', '2021-10-02 16:56:59', NULL),
+(20, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_15_26_56_85.png', '2021-10-02 16:56:56', NULL, NULL),
+(21, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_17_07_54_56.png', '2021-10-02 18:37:54', NULL, '2021-10-02 18:37:59');
 
 -- --------------------------------------------------------
 
@@ -173,6 +229,15 @@ CREATE TABLE `products` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `cat_id`, `user_id`, `brand_id`, `title`, `body`, `attr`, `amount`, `discount`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(11, 2, 1, 1, 'لب تاپ2', '<p>علیرضا جوادی هستم2</p>\r\n', 'a:2:{s:5:\"value\";a:3:{i:0;s:7:\"4گیگ\";i:1;s:7:\"1ترا\";i:2;s:2:\"i9\";}s:3:\"key\";a:3:{i:0;s:5:\"رم2\";i:1;s:10:\"حافظه\";i:2;s:14:\"سی پی یو\";}}', 1212, 121212, '2021-10-02 16:13:55', '2021-10-02 16:15:08', NULL),
+(12, 1, 1, 1, 'گوشی گلکسی', '<p>برند خوبیه</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:7:\"1ترا\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:10:\"حافظه\";}}', 121, 120, '2021-10-02 16:16:43', NULL, NULL),
+(13, 1, 1, 1, 'تلوزیون', '<p>تلوزیون خوب</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:10:\"خانگی\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:6:\"نوع\";}}', 212, 120, '2021-10-02 16:49:31', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -296,6 +361,13 @@ ALTER TABLE `comments`
   ADD KEY `parent_id` (`parent_id`);
 
 --
+-- Indexes for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `galleries`
 --
 ALTER TABLE `galleries`
@@ -362,13 +434,13 @@ ALTER TABLE `bought`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -377,10 +449,16 @@ ALTER TABLE `comments`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `discounts`
+--
+ALTER TABLE `discounts`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
@@ -392,7 +470,7 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -455,6 +533,12 @@ ALTER TABLE `categories`
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `discounts`
+--
+ALTER TABLE `discounts`
+  ADD CONSTRAINT `discounts_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `galleries`
