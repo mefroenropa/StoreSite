@@ -7,7 +7,7 @@ CREATE TABLE `products` (
   `brand_id` bigint(20) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
   `body` text COLLATE utf8mb4_persian_ci NOT NULL,
-  `attributes` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `attr` text COLLATE utf8mb4_persian_ci NOT NULL,
   `amount` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
