@@ -17,25 +17,27 @@
                         <h4 class="text-blue h4 text-right"> افزودن برند </h4>
                     </div>
                     <div class="pull-left">
-                        <a href="index" class="btn btn-danger d-inline">بازگشت</a>
+                        <a href="<?= route('admin.brand.index') ?>" class="btn btn-danger d-inline">بازگشت</a>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="pd-20 card-box mb-30 text-right">
-            	<form>
-                        <div class="form-group">
-                            <label>نام برند</label>
-                            <input class="form-control" name="na222me" type="text">
+            	<form action="<?= route('admin.brand.store') ?>" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>نام برند</label>
+                        <input value="<?= old('name') ?>" class="form-control <?= errorClass('name') ?>" name="name" type="text">
+                        <?= errorText('name') ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label> عکس برند مورد نظر را انتخاب کنید </label>
+                        <div class="custom-file">
+                            <label class="">Choose file</label>
+                            <input type="file" name="image" class="form-control <?= errorClass('image') ?>">
+                            <?= errorText('image') ?>
                         </div>
-                        
-                        <div class="form-group">
-                            <label> عکس برند مورد نظر را انتخاب کنید </label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input">
-                                <label class="custom-file-label">Choose file</label>
-                            </div>
-                        </div>
+                    </div>
 
                         <input type="submit" value="ثبت" class="btn btn-success">
                     
