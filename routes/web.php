@@ -45,3 +45,19 @@ Route::get('/gallery/create/{id}', 'Admin\GalleryController@create', 'admin.gall
 Route::post('/gallery/store/{id}', 'Admin\GalleryController@store', 'admin.gallery.store');
 Route::get('/gallery/isFirst/{id}', 'Admin\GalleryController@isFirst', 'admin.gallery.isFirst');
 Route::delete('/gallery/delete/{id}', 'Admin\GalleryController@destroy', 'admin.gallery.delete');
+
+//admin brand routes
+Route::get('/brand', 'Admin\BrandController@index', 'admin.brand.index');
+Route::get('/brand/archive', 'Admin\BrandController@archive', 'admin.brand.archive');
+Route::get('/brand/create', 'Admin\BrandController@create', 'admin.brand.create');
+Route::post('/brand/store', 'Admin\BrandController@store', 'admin.brand.store');
+Route::get('/brand/edit/{id}', 'Admin\BrandController@edit', 'admin.brand.edit');
+Route::put('/brand/update/{id}', 'Admin\BrandController@update', 'admin.brand.update');
+Route::delete('/brand/delete/{id}', 'Admin\BrandController@destroy', 'admin.brand.delete');
+
+//admin discount routes
+Route::get('/discount', 'Admin\DiscountController@index', 'admin.discount.index');
+Route::get('/discount/archive', 'Admin\DiscountController@archive', 'admin.discount.archive');
+Route::get('/discount/create', 'Admin\DiscountController@create', 'admin.discount.create');
+Route::post('/discount/store', 'Admin\DiscountController@store', 'admin.discount.store');
+Route::delete('/discount/delete/{id}', 'Admin\DiscountController@destroy', 'admin.discount.delete');
