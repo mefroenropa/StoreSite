@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Gallery;
 use System\Database\ORM\Model;
 use System\Database\Traits\HasSoftDelete;
 
@@ -12,8 +11,8 @@ class Product extends Model
     use HasSoftDelete;
 
     protected $table = "products";
-    protected $fillable = ['cat_id', 'user_id', 'brand_id', 'title', 'body', 'attributes', 'amount', 'discount'];
-    protected $casts = ['attributes' => 'array'];
+    protected $fillable = [ 'title', 'body', 'attr', 'amount', 'discount', 'cat_id', 'user_id', 'brand_id'];
+    protected $casts = ['attr' => 'array'];
     protected $deletedAt = 'deleted_at';
 
     public function galleries(){

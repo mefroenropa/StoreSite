@@ -6,9 +6,8 @@ use App\Brand;
 use App\Category;
 use System\Auth\Auth;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Requests\Admin\CategoryRequest;
-use App\Http\Requests\Admin\ProductRequest;
 use App\Product;
+use System\Request\Request;
 
 class ProductController extends AdminController
 {
@@ -16,6 +15,7 @@ class ProductController extends AdminController
         $categories = Category::all();
         $brands = Brand::all();
         $products = Product::all();
+
         return view("admin.product.index", compact('categories', 'brands', 'products'));
     }
     
@@ -34,8 +34,7 @@ class ProductController extends AdminController
 
     
     public function store(){
-        $request = new ProductRequest;
-        dd('hi');
+        $request = new Request();
         $inputs = $request->all();
         $inputs['user_id'] = Auth::user()->id;
         Product::create($inputs);
@@ -47,25 +46,25 @@ class ProductController extends AdminController
 
     
     public function edit($id){
-        $category = Category::find($id);
+        $product = Product::find($id);
         $categories = Category::all();
-
-        return view("admin.product.edit", compact('category', 'categories'));
+        $brands = Brand::all();
+        return view("admin.product.edit", compact('product', 'categories', 'brands'));
     }
 
     
     public function update($id){
-        $request = new CategoryRequest;
+        $request = new Request;
         $inputs = $request->all();
         $inputs['id'] = $id;
         $inputs['user_id'] = Auth::user()->id;
-        Category::update($inputs);
+        Product::update($inputs);
         return redirect('product');
     }
 
     
     public function destroy($id){
-        Category::delete($id);
+        Product::delete($id);
         return back();
     }
 
