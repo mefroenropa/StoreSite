@@ -11,12 +11,11 @@ $(".tab-wizard1").steps({
 		$('.steps .current').prevAll().addClass('disabled');
 	},
 	onFinished: function (event, currentIndex) {
-		alert('hi');
 		$('#success-modal').modal('show');
 	}
 });
 
-$(".tab-wizard2").steps({
+$(".tab-wizard").steps({
 	headerTag: "h5",
 	bodyTag: "section",
 	transitionEffect: "fade",
@@ -30,6 +29,7 @@ $(".tab-wizard2").steps({
 		$('.steps .current').prevAll().addClass('disabled');
 	},
 	onFinished: function(event, currentIndex) {
+alert('لطفا با دکمه سبز رنگ اطلاعات وارد شده را ثبت کنید');
 		$('#success-modal-btn').trigger('click');
 	}
 });
