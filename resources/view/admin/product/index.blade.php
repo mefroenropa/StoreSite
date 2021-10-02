@@ -40,7 +40,7 @@
 							
 						<tr >
 							<td class="table-plus">
-								<img src="<?= asset('<?= $product->photo()->image ?>')?>" width="70" height="70" alt="">
+								<img src="<?= asset($product->photo()->image)?>" width="70" height="70" alt="">
 							</td>
 							<td>
                                  <?= $product->title ?>
@@ -55,10 +55,16 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> گالری</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> ویرایش</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> حذف</a>
-									</div>
+										<a class="dropdown-item" href="<?= route('admin.gallery.create', [$product->id]) ?>"><i class="dw dw-eye"></i> گالری</a>
+										<a class="dropdown-item" href="<?= route('admin.product.edit', [$product->id]) ?>"><i class="dw dw-edit2"></i> ویرایش</a>
+										<form action="<?= route('admin.product.delete', [$product->id]) ?>" method="post">
+											<input type="hidden" name="_method" value="delete">
+											<button class="dropdown-item" type="submit"><i class="dw dw-delete-3"></i> حذف</button>
+									
+										</form>
+
+									
+									</div> 
 								</div>
 							</td>
 						</tr>

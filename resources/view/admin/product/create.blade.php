@@ -17,7 +17,7 @@
                         <h4 class="text-blue h4 text-right"> افزودن محصول </h4>
                     </div>
                     <div class="pull-left">
-                        <a href="index" class="btn btn-danger d-inline">بازگشت</a>
+                        <a href="<?= route('admin.product.index') ?>" class="btn btn-danger d-inline">بازگشت</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label > نا محصول :</label>
-                                        <input type="text" name="title" class="form-control <?= errorClass('title') ?>">
+                                        <input value="<?= old('title') ?>" type="text" name="title" class="form-control <?= errorClass('title') ?>">
                                         <?= errorText('title') ?>
                                     </div>
                                 </div>
@@ -42,14 +42,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>قیمت اصلی :</label>
-                                        <input type="number" name="amount" class="form-control <?= errorClass('amount') ?>">
+                                        <input value="<?= old('amount') ?>" type="text" name="amount" class="form-control <?= errorClass('amount') ?>">
                                         <?= errorText('amount') ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>مبلغ اف خورده :</label>
-                                        <input type="number" name="discount" class="form-control <?= errorClass('discount') ?>">
+                                        <input value="<?= old('discount') ?>" type="text" name="discount" class="form-control <?= errorClass('discount') ?>">
                                         <?= errorText('discount') ?>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label > توظیحات  :</label>
-                                        <textarea class="form-control <?= errorClass('body') ?>" id="body" rows="5" name="body" placeholder="متن ..."></textarea>
+                                        <textarea class="form-control <?= errorClass('body') ?>" id="body" rows="5" name="body" placeholder="متن ..."><?= old('body') ?></textarea>
                                         <?= errorText('body') ?>
                                     </div>
                                 </div>
@@ -97,27 +97,45 @@
                         <!-- Step 2 -->
                         <h5> مشخصات کلی</h5>
                         <section>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group attr-area">
-                                        <label for="">مشخصات (ویژگی ها)</label>
-                                        <textarea class="form-control <?= errorClass('attributes') ?>" id="attributes" rows="5" name="attributes" placeholder="متن ..."></textarea>
-                                        
+                            <p class="btn btn-primary" id="attr-add">افزودن</p>
+                            <div class="row " id="attr-area">
+                                <div class="col-md-12 border border-info w-90">
+                                    <div class="form-group d-flex justify-content-center">
+                                        <div class="row d-inline">
+                                            <div class="col-md-6 ">
+                                                <div class="form-group">
+                                                    <label > مقدار  :</label>
+                                                    <input type="text" name="attr[value][0]" class="form-control ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label > عنوان :</label>
+                                                    <input type="text" name="attr[key][0]" class="form-control ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <p class="btn btn-danger attr-remove" id="attr-remove">حذف</p>
                                     </div>
                                 </div>
-                                <?= errorText('attributes') ?>
-                          
-                            </div>
-                            <div class="row">
-                                
-                                <div class="col-md-12 text-center">
-                                    <input class="btn btn-success w-25" type="submit" value="بارگذاری">
 
-                                </div>
+
+                                
+                               
+                              
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <input class="btn btn-success w-25" type="submit" value="بارگذاری">
+
+                            </div>
                             <hr>
                             <br>
                         </section>
-                    
+                
 
                        
                    
@@ -134,7 +152,52 @@
 
 <script src="<?= asset('src/plugins/jquery-steps/jquery.steps.js')?>"></script>
 <script src="<?= asset('vendors/scripts/steps-setting.js')?>"></script>
+<script>
+   
+ $(document).ready(function(){
 
+    var numberPlus = 1;
+
+  $("#attr-add").click(function(){
+      
+      var div = '';
+        div += '<div class="col-md-12 border border-info w-90">';
+        div += '<div class="form-group d-flex justify-content-center">';
+        div += ' <div class="row d-inline">';
+        div += '<div class="col-md-6 ">';
+        div += '<div class="form-group">';
+        div += ' <label > مقدار  :</label>';
+        div += ' <input type="text" name="attr[value]['+numberPlus+']" class="form-control ">';
+        div += '</div>';
+        div += '</div>';
+        div += '</div>';
+        div += ' <div class="row">';
+        div += '<div class="col-md-6">';
+        div += '<div class="form-group">';
+        div += ' <label > عنوان :</label>';
+        div += '<input type="text" name="attr[key]['+numberPlus+']" class="form-control ">';
+        div += '</div>';
+        div += '</div>';
+        div += '</div>';
+        div += '</div>';
+
+        div += ' <div class="d-flex justify-content-center">';
+        div += '  <p class="btn btn-danger attr-remove" id="attr-remove">حذف</p>';
+        div += ' </div>';
+        div += '</div>';
+        
+       
+        
+
+    numberPlus++;
+    $("#attr-area").append(div);
+  });
+  $(".attr-remove").click(function(){
+    $(this).parent().parent().remove();
+  });
+
+});
+</script>
 <script src="<?= asset('ckeditor/ckeditor.js') ?>"></script>
 <script type="text/javascript">
     CKEDITOR.replace('body');
