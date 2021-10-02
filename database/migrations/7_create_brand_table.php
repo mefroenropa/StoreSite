@@ -5,7 +5,7 @@ CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
-  `body` text COLLATE utf8mb4_persian_ci DEFAULT NULL,
+  `image` text COLLATE utf8mb4_persian_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
