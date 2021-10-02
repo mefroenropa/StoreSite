@@ -17,6 +17,7 @@ Route::post('/login', 'Auth\LoginController@login', 'auth.login');
 Route::get('/register', 'Auth\RegisterController@view', 'auth.register.view');
 Route::post('/register', 'Auth\RegisterController@register', 'auth.register');
 Route::get('/activation/{token}', 'Auth\RegisterController@activation', 'auth.activation');
+
 //admin routes
 Route::get('/admin', 'Admin\AdminController@index', 'admin.index');
 
@@ -38,4 +39,9 @@ Route::get('/product/edit/{id}', 'Admin\ProductController@edit', 'admin.product.
 Route::put('/product/update/{id}', 'Admin\ProductController@update', 'admin.product.update');
 Route::delete('/product/delete/{id}', 'Admin\ProductController@destroy', 'admin.product.delete');
 
-
+//admin gallery routes
+Route::get('/gallery/archive', 'Admin\GalleryController@archive', 'admin.gallery.archive');
+Route::get('/gallery/create/{id}', 'Admin\GalleryController@create', 'admin.gallery.create');
+Route::post('/gallery/store/{id}', 'Admin\GalleryController@store', 'admin.gallery.store');
+Route::get('/gallery/isFirst/{id}', 'Admin\GalleryController@isFirst', 'admin.gallery.isFirst');
+Route::delete('/gallery/delete/{id}', 'Admin\GalleryController@destroy', 'admin.gallery.delete');
