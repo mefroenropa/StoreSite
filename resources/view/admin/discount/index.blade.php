@@ -17,8 +17,8 @@
                     <p class="mb-30 text-right">لیست همه  کد هایه تخفیف  </p>
                 </div>
                 <div class="pull-left">
-                    <a href="index" class="btn btn-success d-inline">افزودن  کد تخفیف جدید</a>
-                    <a href="index" class="btn btn-warning d-inline"> کد تخفیف هایه بایگانی شده</a>
+                    <a href="<?= route('admin.discount.create') ?>" class="btn btn-success d-inline">افزودن  کد تخفیف جدید</a>
+                    <a href="<?= route('admin.discount.archive') ?>" class="btn btn-warning d-inline"> کد تخفیف هایه بایگانی شده</a>
                 </div>
             </div>
  
@@ -37,15 +37,17 @@
 						</tr>
 					</thead>
 					<tbody>
+						
+						<?php $numberPlus =1; foreach($discounts as $discount){ ?>
 						<tr >
-							<td>1</td>
+							<td><?= $numberPlus; ?></td>
 
-							<td> ECF-252123 </td>
-							<td> علیرضا جوادی </td>
+							<td> <?= $discount->code ?> </td>
+							<td> <?= fullUsername($discount->user()) ?> </td>
 
-							<td> <h6>29%</h6> </td>
+							<td> <h6> <?= $discount->value ?></h6> </td>
 							
-							<td> <h6>ندارد</h6> </td>
+							<td> <h6> <?= $discount->timeToDate ?></h6> </td>
 							
 							<td>
 								<div class="dropdown">
@@ -53,12 +55,15 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> حذف</a>
+										<form action="<?= route('admin.discount.delete', [$discount->id]) ?>" method="post">
+											<input type="hidden" name="_method" value="delete">
+											<button  class="dropdown-item" type="submit"><i class="dw dw-delete-3"></i> حذف</button>
+										</form>
 									</div>
 								</div>
 							</td>
 						</tr>
-
+						<?php $numberPlus++; } ?>
 
 
 						

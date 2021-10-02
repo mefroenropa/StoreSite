@@ -22,8 +22,8 @@
                 </div>
             </div>
  
-            <div class="card-box mb-30 " style="text-align: right;">
-				<table class="data-table table nowrap">
+            <div class="card-box mb-30 ">
+				<table class="data-table table nowrap ">
 					<thead>
 						<tr>
 							<th class="table-plus datatable-nosort">محصول</th>

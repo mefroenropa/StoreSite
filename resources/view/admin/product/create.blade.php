@@ -25,7 +25,7 @@
             <div class="pd-20 card-box mb-30">
             
                 <div class="wizard-content">
-                    <form action="<?= route('admin.product.store') ?>" method="POST" class="tab-wizard wizard-circle wizard text-right">
+                    <form action="<?= route('admin.product.store') ?>" method="POST" id="signupForm" class="tab-wizard wizard-circle wizard text-right">
                         <h5>مشخصات اولیه محصول </h5>
                         <section>
                             <div class="row">
@@ -87,6 +87,7 @@
                                         <label > توظیحات  :</label>
                                         <textarea class="form-control <?= errorClass('body') ?>" id="body" rows="5" name="body" placeholder="متن ..."><?= old('body') ?></textarea>
                                         <?= errorText('body') ?>
+                                       
                                     </div>
                                 </div>
                                
@@ -155,7 +156,7 @@
 <script>
    
  $(document).ready(function(){
-
+ 
     var numberPlus = 1;
 
   $("#attr-add").click(function(){

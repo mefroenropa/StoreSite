@@ -22,12 +22,12 @@
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">محصولات</span>
+                        <span class="micon dw dw-house-1"></span><span class="mtext">مدیریت کلی</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="<?= route('admin.product.index') ?>"> محصولات </a></li>
                         <li><a href="<?= route('admin.category.index') ?>">  دسته بندی ها </a></li>
-                        <li><a href="index"> کد تخفیف ها</a></li>
+                        <li><a href="<?= route('admin.discount.index') ?>"> کد تخفیف ها</a></li>
                         <li><a href="index"> انبار داری</a></li>
                     </ul>
                 </li>
@@ -37,7 +37,7 @@
                         <span class="micon dw dw-house-1"></span><span class="mtext">برند</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index"> برند ها</a></li>
+                        <li><a href="<?= route('admin.brand.index') ?>"> برند ها</a></li>
                     </ul>
                 </li>
 
