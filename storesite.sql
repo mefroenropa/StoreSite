@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2021 at 09:10 PM
+-- Generation Time: Oct 03, 2021 at 07:46 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -32,6 +32,8 @@ CREATE TABLE `bought` (
   `user_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
   `cart_id` bigint(20) NOT NULL,
+  `price` bigint(20) NOT NULL,
+  `status` enum('0','1','2','3') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -64,7 +66,8 @@ INSERT INTO `brands` (`id`, `user_id`, `name`, `image`, `created_at`, `updated_a
 (4, 1, 'samsung', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_32_48_78.jpg\";', '2021-10-02 19:02:48', NULL, '2021-10-02 19:03:52'),
 (5, 1, 'asdas', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_33_42_11.jpg\";', '2021-10-02 19:03:42', NULL, '2021-10-02 19:03:49'),
 (6, 1, 'html', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_35_42_65.jpg\";', '2021-10-02 19:05:42', NULL, '2021-10-02 19:05:46'),
-(7, 1, 'asus', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_43_43_30.jpg\";', '2021-10-02 19:13:43', NULL, NULL);
+(7, 1, 'asus', 's:56:\"/images/brandIcon/2021/Oct/02/2021_10_02_17_43_43_30.jpg\";', '2021-10-02 19:13:43', NULL, NULL),
+(8, 1, 'mircosoft', 's:56:\"/images/brandIcon/2021/Oct/03/2021_10_03_06_55_00_19.jpg\";', '2021-10-03 08:25:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -109,7 +112,8 @@ INSERT INTO `categories` (`id`, `user_id`, `name`, `parent_id`, `created_at`, `u
 (3, 1, 'لپ تاپ', 1, '2021-10-01 21:44:57', NULL, '2021-10-02 16:09:06'),
 (4, 1, 'لپ تاپ', 1, '2021-10-02 19:14:42', NULL, NULL),
 (5, 1, 'خانگی', 0, '2021-10-02 19:14:57', NULL, NULL),
-(6, 1, 'تلوزیون', 5, '2021-10-02 19:15:12', NULL, NULL);
+(6, 1, 'تلوزیون', 5, '2021-10-02 19:15:12', NULL, NULL),
+(7, 1, 'لباس شویی', 5, '2021-10-03 08:18:40', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,7 +161,8 @@ INSERT INTO `discounts` (`id`, `user_id`, `code`, `value`, `type`, `timeToDate`,
 (2, 1, '', '30%', '0', '120', '2021-10-02 20:00:36', '0000-00-00 00:00:00', '2021-10-02 20:01:13'),
 (3, 1, 'MFD-14453626', '30%', '0', '120', '2021-10-02 20:01:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, 1, 'MFD-1011262', '50,000', '1', '120', '2021-10-02 20:01:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 1, 'MFD-64736240', '50%', '0', '24', '2021-10-02 20:02:17', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(5, 1, 'MFD-64736240', '50%', '0', '24', '2021-10-02 20:02:17', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 1, 'MFD-86797302', '10', '0', '120', '2021-10-03 08:19:30', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -181,9 +186,9 @@ CREATE TABLE `galleries` (
 --
 
 INSERT INTO `galleries` (`id`, `product_id`, `user_id`, `isFirst`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(10, 11, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_14_44_08_26.jpg', '2021-10-02 16:14:09', '2021-10-02 16:56:15', NULL),
+(10, 11, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_14_44_08_26.jpg', '2021-10-02 16:14:09', '2021-10-03 08:16:06', NULL),
 (11, 11, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_44_12_68.jpg', '2021-10-02 16:14:13', NULL, NULL),
-(12, 11, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_44_19_76.jpg', '2021-10-02 16:14:20', '2021-10-02 16:56:13', NULL),
+(12, 11, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_44_19_76.jpg', '2021-10-02 16:14:20', '2021-10-03 08:16:06', NULL),
 (13, 12, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_47_07_41.jpg', '2021-10-02 16:17:08', '2021-10-02 16:17:46', '2021-10-02 16:18:12'),
 (14, 12, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_14_47_12_77.jpg', '2021-10-02 16:17:13', '2021-10-02 16:55:38', NULL),
 (15, 12, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_14_47_18_39.jpg', '2021-10-02 16:17:18', '2021-10-02 16:18:00', '2021-10-02 16:18:10'),
@@ -192,7 +197,12 @@ INSERT INTO `galleries` (`id`, `product_id`, `user_id`, `isFirst`, `image`, `cre
 (18, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_15_26_47_18.png', '2021-10-02 16:56:47', NULL, NULL),
 (19, 13, 1, '1', '/images/gallery/2021/Oct/02/2021_10_02_15_26_51_39.png', '2021-10-02 16:56:51', '2021-10-02 16:56:59', NULL),
 (20, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_15_26_56_85.png', '2021-10-02 16:56:56', NULL, NULL),
-(21, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_17_07_54_56.png', '2021-10-02 18:37:54', NULL, '2021-10-02 18:37:59');
+(21, 13, 1, '0', '/images/gallery/2021/Oct/02/2021_10_02_17_07_54_56.png', '2021-10-02 18:37:54', NULL, '2021-10-02 18:37:59'),
+(22, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_29_58_23.jpg', '2021-10-03 07:59:58', '2021-10-03 08:15:51', NULL),
+(23, 14, 1, '1', '/images/gallery/2021/Oct/03/2021_10_03_06_30_02_88.jpg', '2021-10-03 08:00:03', '2021-10-03 08:15:51', NULL),
+(24, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_30_07_88.jpg', '2021-10-03 08:00:08', '2021-10-03 08:15:37', NULL),
+(25, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_30_14_69.jpg', '2021-10-03 08:00:15', '2021-10-03 08:15:32', NULL),
+(26, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_30_21_89.png', '2021-10-03 08:00:22', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,8 +233,8 @@ CREATE TABLE `products` (
   `title` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
   `body` text COLLATE utf8mb4_persian_ci NOT NULL,
   `attr` text COLLATE utf8mb4_persian_ci NOT NULL,
-  `amount` int(11) NOT NULL,
-  `discount` int(11) NOT NULL,
+  `amount` bigint(20) NOT NULL,
+  `discount` bigint(20) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -237,7 +247,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `cat_id`, `user_id`, `brand_id`, `title`, `body`, `attr`, `amount`, `discount`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (11, 2, 1, 1, 'لب تاپ2', '<p>علیرضا جوادی هستم2</p>\r\n', 'a:2:{s:5:\"value\";a:3:{i:0;s:7:\"4گیگ\";i:1;s:7:\"1ترا\";i:2;s:2:\"i9\";}s:3:\"key\";a:3:{i:0;s:5:\"رم2\";i:1;s:10:\"حافظه\";i:2;s:14:\"سی پی یو\";}}', 1212, 121212, '2021-10-02 16:13:55', '2021-10-02 16:15:08', NULL),
 (12, 1, 1, 1, 'گوشی گلکسی', '<p>برند خوبیه</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:7:\"1ترا\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:10:\"حافظه\";}}', 121, 120, '2021-10-02 16:16:43', NULL, NULL),
-(13, 1, 1, 1, 'تلوزیون', '<p>تلوزیون خوب</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:10:\"خانگی\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:6:\"نوع\";}}', 212, 120, '2021-10-02 16:49:31', NULL, NULL);
+(13, 1, 1, 1, 'تلوزیون', '<p>تلوزیون خوب</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:10:\"خانگی\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:6:\"نوع\";}}', 212, 120, '2021-10-02 16:49:31', NULL, NULL),
+(14, 4, 1, 7, 'لپ تاپ گیمینگ', '<p>یک لپ تاپ عالی</p>\r\n', 'a:2:{s:5:\"value\";a:4:{i:0;s:12:\"گیمینگ\";i:1;s:9:\"20 روز\";i:2;s:8:\"دارد\";i:3;s:6:\"بله\";}s:3:\"key\";a:4:{i:0;s:6:\"مدل\";i:1;s:30:\"مدت نگهداری شارژ\";i:2;s:11:\"شارژر \";i:3;s:9:\"زد آب\";}}', 20000000, 12000000, '2021-10-03 07:56:31', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -255,6 +266,21 @@ CREATE TABLE `store` (
   `updated_at` datetime NOT NULL,
   `deleted_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `store`
+--
+
+INSERT INTO `store` (`id`, `user_id`, `product_id`, `count`, `firstCount`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 12, 10, 0, '2021-10-02 22:51:28', '0000-00-00 00:00:00', '2021-10-02 22:54:57'),
+(2, 1, 12, 0, 0, '2021-10-02 22:55:05', '0000-00-00 00:00:00', '2021-10-02 22:55:39'),
+(3, 1, 13, 0, 50, '2021-10-02 22:55:53', '2021-10-02 22:57:58', '2021-10-02 22:59:51'),
+(4, 1, 12, 0, 50, '2021-10-02 22:56:03', '0000-00-00 00:00:00', '2021-10-02 22:56:52'),
+(5, 1, 11, 0, 20, '2021-10-02 22:58:05', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 1, 12, 0, 300, '2021-10-02 22:58:11', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 1, 13, 0, 40, '2021-10-02 23:02:10', '0000-00-00 00:00:00', '2021-10-02 23:02:23'),
+(8, 1, 13, 0, 10, '2021-10-02 23:02:31', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 1, 14, 0, 15, '2021-10-03 08:19:52', '2021-10-03 08:21:08', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -459,13 +485,13 @@ ALTER TABLE `bought`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -477,13 +503,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
@@ -495,13 +521,13 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
