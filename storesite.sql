@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2021 at 07:46 AM
+-- Generation Time: Oct 03, 2021 at 10:12 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -38,6 +38,13 @@ CREATE TABLE `bought` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `bought`
+--
+
+INSERT INTO `bought` (`id`, `user_id`, `product_id`, `cart_id`, `price`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 13, 1, 200, '0', '2021-10-03 08:04:49', '2021-10-03 09:41:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -79,12 +86,19 @@ CREATE TABLE `cart` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
-  `count` int(11) NOT NULL DEFAULT 1,
-  `isPaid` enum('0','1') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
+  `count` bigint(20) NOT NULL,
+  `isPaid` enum('0','1') COLLATE utf8mb4_persian_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `count`, `isPaid`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 13, 4, '1', '2021-10-03 08:03:46', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,8 +141,10 @@ CREATE TABLE `comments` (
   `product_id` bigint(20) NOT NULL,
   `parent_id` bigint(20) DEFAULT NULL,
   `comment` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `isConfirm` enum('0','1','2') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
   `likes` bigint(20) NOT NULL DEFAULT 0,
   `report_count` int(11) NOT NULL DEFAULT 0,
+  `star_count` enum('1','2','3','4','5') COLLATE utf8mb4_persian_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -479,13 +495,19 @@ ALTER TABLE `wishlistcategories`
 -- AUTO_INCREMENT for table `bought`
 --
 ALTER TABLE `bought`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -561,9 +583,9 @@ ALTER TABLE `wishlistcategories`
 -- Constraints for table `bought`
 --
 ALTER TABLE `bought`
-  ADD CONSTRAINT `bought_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
   ADD CONSTRAINT `bought_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `bought_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `bought_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `bought_ibfk_4` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`);
 
 --
 -- Constraints for table `brands`
@@ -589,7 +611,8 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`parent_id`) REFERENCES `comments` (`id`);
 
 --
 -- Constraints for table `discounts`
