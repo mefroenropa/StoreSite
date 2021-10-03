@@ -29,17 +29,21 @@
                         <li><a href="<?= route('admin.category.index') ?>">  دسته بندی ها </a></li>
                         <li><a href="<?= route('admin.discount.index') ?>"> کد تخفیف ها</a></li>
                         <li><a href="<?= route('admin.store.index') ?>"> انبار داری</a></li>
+                        <li><a href="<?= route('admin.brand.index') ?>"> برند ها</a></li>
+
                     </ul>
                 </li>
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-house-1"></span><span class="mtext">برند</span>
+                        <span class="micon dw dw-house-1"></span><span class="mtext">نظرات</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?= route('admin.brand.index') ?>"> برند ها</a></li>
+                        <li><a href="<?= route('admin.comment.index') ?>"> نظر ها</a></li>
                     </ul>
                 </li>
+
+
 
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
@@ -49,9 +53,6 @@
                         <li><a href="<?= route('admin.sold.index') ?>">مدیریت کالا هایه فروش رفته</a></li>
                     </ul>
                 </li>
-
-
-           
        
             </ul>
         </div>
