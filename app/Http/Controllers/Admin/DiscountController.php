@@ -6,7 +6,7 @@ use App\Category;
 use App\Discount;
 use System\Auth\Auth;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Requests\Admin\CategoryRequest;
+
 use App\Http\Requests\Admin\DiscountRequest;
 use App\Product;
 
@@ -36,7 +36,7 @@ class DiscountController extends AdminController
         $inputs['user_id'] = Auth::user()->id;
         $inputs['code'] = "MFD-".rand(1000000, 90000000);
         Discount::create($inputs);
-        return redirect('discount');
+        return redirect('/admin/discount');
 
     }
 

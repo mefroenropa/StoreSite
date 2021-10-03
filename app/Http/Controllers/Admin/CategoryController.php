@@ -32,7 +32,7 @@ class CategoryController extends AdminController
         $inputs = $request->all();
         $inputs['user_id'] = Auth::user()->id;
         Category::create($inputs);
-        return redirect('category');
+        return redirect('/admin/category');
 
     }
 
@@ -53,7 +53,7 @@ class CategoryController extends AdminController
         $inputs['id'] = $id;
         $inputs['user_id'] = Auth::user()->id;
         Category::update($inputs);
-        return redirect('category');
+        return redirect('/admin/category');
     }
 
     

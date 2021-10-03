@@ -38,7 +38,7 @@ class ProductController extends AdminController
         $inputs = $request->all();
         $inputs['user_id'] = Auth::user()->id;
         Product::create($inputs);
-        return redirect('product');
+        return redirect('/admin/product');
 
     }
 
@@ -59,7 +59,7 @@ class ProductController extends AdminController
         $inputs['id'] = $id;
         $inputs['user_id'] = Auth::user()->id;
         Product::update($inputs);
-        return redirect('product');
+        return redirect('/admin/product');
     }
 
     

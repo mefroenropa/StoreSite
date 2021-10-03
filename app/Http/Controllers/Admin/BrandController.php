@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Brand;
-use App\Category;
 use System\Auth\Auth;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests\Admin\BrandRequest;
-use App\Http\Requests\Admin\CategoryRequest;
 use App\Http\Services\ImageUpload;
 use System\Request\Request;
 
@@ -39,7 +37,7 @@ class BrandController extends AdminController
         $inputs['image'] = ImageUpload::UploadAndFitImage($request->file('image'), $path, $name, 360, 360);
         $inputs['user_id'] = Auth::user()->id;
         Brand::create($inputs);
-        return redirect('brand');
+        return redirect('/admin/brand');
 
     }
 
@@ -62,7 +60,7 @@ class BrandController extends AdminController
         $inputs['user_id'] = Auth::user()->id;
         $inputs['id'] = $id;
         Brand::update($inputs);
-        return redirect('brand');
+        return redirect('/admin/brand');
     }
 
     
