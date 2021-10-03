@@ -46,7 +46,7 @@
                         <span class="micon dw dw-house-1"></span><span class="mtext">فروش رفته</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index">مدیریت کالا هایه فروش رفته</a></li>
+                        <li><a href="<?= route('admin.sold.index') ?>">مدیریت کالا هایه فروش رفته</a></li>
                     </ul>
                 </li>
 
