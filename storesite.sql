@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2021 at 10:12 AM
+-- Generation Time: Oct 03, 2021 at 06:09 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -150,6 +150,14 @@ CREATE TABLE `comments` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
 
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `product_id`, `parent_id`, `comment`, `isConfirm`, `likes`, `report_count`, `star_count`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 11, NULL, 'خیلی لپ تاپ خوبی بود ', '1', 0, 0, '5', '2021-10-03 12:43:41', '2021-10-03 14:32:05', NULL),
+(2, 1, 11, NULL, 'خوب بود', '0', 0, 0, '4', '2021-10-03 16:38:43', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -218,7 +226,8 @@ INSERT INTO `galleries` (`id`, `product_id`, `user_id`, `isFirst`, `image`, `cre
 (23, 14, 1, '1', '/images/gallery/2021/Oct/03/2021_10_03_06_30_02_88.jpg', '2021-10-03 08:00:03', '2021-10-03 08:15:51', NULL),
 (24, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_30_07_88.jpg', '2021-10-03 08:00:08', '2021-10-03 08:15:37', NULL),
 (25, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_30_14_69.jpg', '2021-10-03 08:00:15', '2021-10-03 08:15:32', NULL),
-(26, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_30_21_89.png', '2021-10-03 08:00:22', NULL, NULL);
+(26, 14, 1, '0', '/images/gallery/2021/Oct/03/2021_10_03_06_30_21_89.png', '2021-10-03 08:00:22', NULL, NULL),
+(27, 15, 1, '1', '/images/gallery/2021/Oct/03/2021_10_03_15_27_59_16.jpg', '2021-10-03 16:58:00', '2021-10-03 16:58:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -247,10 +256,11 @@ CREATE TABLE `products` (
   `user_id` bigint(20) NOT NULL,
   `brand_id` bigint(20) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
+  `sold` int(11) NOT NULL DEFAULT 0,
   `body` text COLLATE utf8mb4_persian_ci NOT NULL,
   `attr` text COLLATE utf8mb4_persian_ci NOT NULL,
   `amount` bigint(20) NOT NULL,
-  `discount` bigint(20) NOT NULL,
+  `discount` bigint(20) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -260,11 +270,12 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `cat_id`, `user_id`, `brand_id`, `title`, `body`, `attr`, `amount`, `discount`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(11, 2, 1, 1, 'لب تاپ2', '<p>علیرضا جوادی هستم2</p>\r\n', 'a:2:{s:5:\"value\";a:3:{i:0;s:7:\"4گیگ\";i:1;s:7:\"1ترا\";i:2;s:2:\"i9\";}s:3:\"key\";a:3:{i:0;s:5:\"رم2\";i:1;s:10:\"حافظه\";i:2;s:14:\"سی پی یو\";}}', 1212, 121212, '2021-10-02 16:13:55', '2021-10-02 16:15:08', NULL),
-(12, 1, 1, 1, 'گوشی گلکسی', '<p>برند خوبیه</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:7:\"1ترا\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:10:\"حافظه\";}}', 121, 120, '2021-10-02 16:16:43', NULL, NULL),
-(13, 1, 1, 1, 'تلوزیون', '<p>تلوزیون خوب</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:10:\"خانگی\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:6:\"نوع\";}}', 212, 120, '2021-10-02 16:49:31', NULL, NULL),
-(14, 4, 1, 7, 'لپ تاپ گیمینگ', '<p>یک لپ تاپ عالی</p>\r\n', 'a:2:{s:5:\"value\";a:4:{i:0;s:12:\"گیمینگ\";i:1;s:9:\"20 روز\";i:2;s:8:\"دارد\";i:3;s:6:\"بله\";}s:3:\"key\";a:4:{i:0;s:6:\"مدل\";i:1;s:30:\"مدت نگهداری شارژ\";i:2;s:11:\"شارژر \";i:3;s:9:\"زد آب\";}}', 20000000, 12000000, '2021-10-03 07:56:31', NULL, NULL);
+INSERT INTO `products` (`id`, `cat_id`, `user_id`, `brand_id`, `title`, `sold`, `body`, `attr`, `amount`, `discount`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(11, 2, 1, 1, 'لب تاپ2', 0, '<p>علیرضا جوادی هستم2</p>\r\n', 'a:2:{s:5:\"value\";a:3:{i:0;s:7:\"4گیگ\";i:1;s:7:\"1ترا\";i:2;s:2:\"i9\";}s:3:\"key\";a:3:{i:0;s:5:\"رم2\";i:1;s:10:\"حافظه\";i:2;s:14:\"سی پی یو\";}}', 1212, 121212, '2021-10-02 16:13:55', '2021-10-02 16:15:08', NULL),
+(12, 1, 1, 1, 'گوشی گلکسی', 0, '<p>برند خوبیه</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:7:\"1ترا\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:10:\"حافظه\";}}', 121, 120, '2021-10-02 16:16:43', NULL, NULL),
+(13, 1, 1, 1, 'تلوزیون', 10, '<p>تلوزیون خوب</p>\r\n', 'a:2:{s:5:\"value\";a:2:{i:0;s:14:\"سامسونگ\";i:1;s:10:\"خانگی\";}s:3:\"key\";a:2:{i:0;s:14:\"کارخانه\";i:1;s:6:\"نوع\";}}', 212, 120, '2021-10-02 16:49:31', NULL, NULL),
+(14, 4, 1, 7, 'لپ تاپ گیمینگ', 0, '<p>یک لپ تاپ عالی</p>\r\n', 'a:2:{s:5:\"value\";a:4:{i:0;s:12:\"گیمینگ\";i:1;s:9:\"20 روز\";i:2;s:8:\"دارد\";i:3;s:6:\"بله\";}s:3:\"key\";a:4:{i:0;s:6:\"مدل\";i:1;s:30:\"مدت نگهداری شارژ\";i:2;s:11:\"شارژر \";i:3;s:9:\"زد آب\";}}', 20000000, 12000000, '2021-10-03 07:56:31', NULL, NULL),
+(15, 5, 1, 1, 'کولر گازی', 0, '<p>یک کولر عالی</p>\r\n', 'a:2:{s:5:\"value\";a:1:{i:0;s:8:\"دارد\";}s:3:\"key\";a:1:{i:0;s:17:\"خنک کننده\";}}', 6500000, NULL, '2021-10-03 16:57:41', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -279,8 +290,8 @@ CREATE TABLE `store` (
   `count` int(11) NOT NULL,
   `firstCount` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
 
 --
@@ -288,7 +299,7 @@ CREATE TABLE `store` (
 --
 
 INSERT INTO `store` (`id`, `user_id`, `product_id`, `count`, `firstCount`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 12, 10, 0, '2021-10-02 22:51:28', '0000-00-00 00:00:00', '2021-10-02 22:54:57'),
+(1, 1, 12, 10, 20, '2021-10-02 22:51:28', '0000-00-00 00:00:00', '2021-10-02 22:54:57'),
 (2, 1, 12, 0, 0, '2021-10-02 22:55:05', '0000-00-00 00:00:00', '2021-10-02 22:55:39'),
 (3, 1, 13, 0, 50, '2021-10-02 22:55:53', '2021-10-02 22:57:58', '2021-10-02 22:59:51'),
 (4, 1, 12, 0, 50, '2021-10-02 22:56:03', '0000-00-00 00:00:00', '2021-10-02 22:56:52'),
@@ -336,16 +347,29 @@ INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `avatar`, `passwo
 --
 
 CREATE TABLE `views` (
-  `id` int(11) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
   `ip_address` text COLLATE utf8mb4_persian_ci NOT NULL,
   `view_count` int(11) NOT NULL,
-  `page_lists` text COLLATE utf8mb4_persian_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `views`
+--
+
+INSERT INTO `views` (`id`, `product_id`, `ip_address`, `view_count`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 14, '192.24.3112', 41, '2021-10-03 17:07:36', NULL, NULL),
+(2, 14, '213123412', 51, '2021-10-03 17:11:30', NULL, NULL),
+(4, 14, '::12', 4, '2021-10-03 19:14:17', '2021-10-03 19:14:59', NULL),
+(5, 14, '::13', 2, '2021-10-03 19:15:12', '2021-10-03 19:15:31', NULL),
+(6, 14, '::1', 4, '2021-10-03 19:15:52', '2021-10-03 19:16:45', NULL),
+(7, 12, '::1', 3, '2021-10-03 19:16:33', '2021-10-03 19:17:19', NULL),
+(8, 11, '::1', 1, '2021-10-03 19:19:20', NULL, NULL),
+(9, 15, '::123', 1, '2021-10-03 19:20:14', NULL, NULL),
+(10, 15, '::1', 1, '2021-10-03 19:20:39', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -468,7 +492,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `views`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
@@ -519,7 +542,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `discounts`
@@ -531,7 +554,7 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `newsletters`
@@ -543,7 +566,7 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `store`
@@ -561,7 +584,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `views`
 --
 ALTER TABLE `views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
@@ -646,8 +669,7 @@ ALTER TABLE `store`
 -- Constraints for table `views`
 --
 ALTER TABLE `views`
-  ADD CONSTRAINT `views_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `views_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `views_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Constraints for table `wishlist`
