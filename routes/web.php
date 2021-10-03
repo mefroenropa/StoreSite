@@ -61,3 +61,13 @@ Route::get('/discount/archive', 'Admin\DiscountController@archive', 'admin.disco
 Route::get('/discount/create', 'Admin\DiscountController@create', 'admin.discount.create');
 Route::post('/discount/store', 'Admin\DiscountController@store', 'admin.discount.store');
 Route::delete('/discount/delete/{id}', 'Admin\DiscountController@destroy', 'admin.discount.delete');
+
+//admin store routes
+Route::get('/admin/store', 'Admin\StoreController@index', 'admin.store.index');
+Route::get('/admin/store/archive', 'Admin\StoreController@archive', 'admin.store.archive');
+Route::get('/admin/store/create', 'Admin\StoreController@create', 'admin.store.create');
+Route::post('/admin/store/store', 'Admin\StoreController@store', 'admin.store.store');
+Route::get('/admin/store/edit/{id}', 'Admin\StoreController@edit', 'admin.store.edit');
+Route::put('/admin/store/update/{id}', 'Admin\StoreController@update', 'admin.store.update');
+Route::delete('/admin/store/delete/{id}', 'Admin\StoreController@destroy', 'admin.store.delete');
+
