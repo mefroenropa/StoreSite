@@ -6,10 +6,11 @@ CREATE TABLE `products` (
   `user_id` bigint(20) NOT NULL,
   `brand_id` bigint(20) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
+  `sold` int(11) NOT NULL DEFAULT 0,
   `body` text COLLATE utf8mb4_persian_ci NOT NULL,
   `attr` text COLLATE utf8mb4_persian_ci NOT NULL,
-  `amount` int(11) NOT NULL,
-  `discount` int(11) NOT NULL,
+  `amount` bigint(20) NOT NULL,
+  `discount` bigint(20) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
