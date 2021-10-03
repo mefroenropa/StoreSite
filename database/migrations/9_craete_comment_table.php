@@ -6,8 +6,10 @@ CREATE TABLE `comments` (
   `product_id` bigint(20) NOT NULL,
   `parent_id` bigint(20) DEFAULT NULL,
   `comment` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `isConfirm` enum('0','1','2') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
   `likes` bigint(20) NOT NULL DEFAULT 0,
   `report_count` int(11) NOT NULL DEFAULT 0,
+  `star_count` enum('1','2','3','4','5') COLLATE utf8mb4_persian_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
