@@ -17,6 +17,10 @@ class Gallery extends Model
 
     protected $deletedAt = 'deleted_at';
 
+    public function product(){
+        return $this->belongsTo("\App\Product", 'product_id', 'id');
+    }
+
 
 
 }

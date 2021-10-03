@@ -6,7 +6,6 @@ use App\Category;
 use App\Gallery;
 use System\Auth\Auth;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Requests\Admin\GalleryRequest;
 use App\Http\Services\ImageUpload;
 use App\Product;
 use System\Request\Request;
@@ -50,7 +49,18 @@ class GalleryController extends AdminController
     public function isFirst($id)
     {
         $gallery = Gallery::find($id);
+        $product = Product::where('id', $gallery->product_id)->get();
         if($gallery->isFirst == 0){
+          
+            foreach($product[0]->galleries()->get() as $pgallery){
+                if($pgallery->isFirst == 1){
+                    $pgallery->isFirst = 0;
+                    $pgallery->save();
+                }
+                else{
+                    continue;
+                }
+            }
             $gallery->isFirst = 1;
         }else{
             $gallery->isFirst = 0;
