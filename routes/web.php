@@ -75,3 +75,9 @@ Route::delete('/admin/store/delete/{id}', 'Admin\StoreController@destroy', 'admi
 Route::get('/admin/sold', 'Admin\SoldController@index', 'admin.sold.index');
 Route::get('/admin/sold/{status}/{id}', 'Admin\SoldController@status', 'admin.sold.status');
 
+//admin comments routes
+Route::get('/admin/comment', 'Admin\CommentController@index', 'admin.comment.index');
+Route::get('/admin/comment/isConfirm/{isConfirm}/{id}', 'Admin\CommentController@isConfirm', 'admin.comment.isConfirm');
+Route::get('/admin/comment/unConfirm', 'Admin\CommentController@unConfirm', 'admin.comment.unConfirm');
+Route::delete('/admin/comment/delete/{id}', 'Admin\CommentController@destroy', 'admin.comment.delete');
+
