@@ -81,3 +81,17 @@ function paginateUrl($page){
     }
     
 }
+
+
+function putStars($number){
+    $starHtml = '';
+    
+    for($i = 0; $i < ceil($number); $i++){
+        $starHtml .= '<i class="fa fa-star"></i>';
+    }
+    for($j = ceil($number); $j < 5; $j++ ){
+        $starHtml .= '<i class="fa fa-star-o"></i>';
+    }
+
+    return $starHtml;
+}
