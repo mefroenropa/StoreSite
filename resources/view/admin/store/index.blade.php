@@ -17,7 +17,7 @@
                     <p class="mb-30 text-right">لیست همه محصولات و تعداد دقیق آن ها  </p>
                 </div>
                 <div class="pull-left">
-                    <a href="index" class="btn btn-success d-inline">افزودن  تعداد محصول </a>
+                    <a href="<?= route('admin.store.create') ?>" class="btn btn-success d-inline">افزودن  تعداد محصول </a>
                 </div>
             </div>
  
@@ -37,18 +37,20 @@
 						</tr>
 					</thead>
 					<tbody>
+						
+						<?php $numberPlus = 1; foreach($stores as $store){ ?>
 						<tr >
-							<td>1</td>
+							<td><?= $numberPlus; ?></td>
 
 							<td class="table-plus">
-								<img src="<?= asset('vendors/images/photo9.jpg')?>" width="70" height="70" alt="">
+								<img src="<?= asset($store->product()->photo()->image)?>" width="70" height="70" alt="">
 							</td>
 							<td>
-                                لپتاپ ایسوس
+                               <?= $store->product()->title ?>
 							</td>
-							<td>علیرضا جوادی</td>
-							<td>5</td>
-							<td >25</td>
+							<td> <?= fullUsername($store->product()->user()) ?></td>
+							<td> <?= $store->count ?></td>
+							<td > <?= $store->firstCount ?></td>
 							<td>خوب</td>
 							<td>
 								<div class="dropdown">
@@ -56,16 +58,17 @@
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> ویرایش</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> حذف</a>
+										<a class="dropdown-item" href="<?= route('admin.store.edit', [$store->id]) ?>"><i class="dw dw-edit2"></i> ویرایش</a>
+										<form action="<?= route('admin.store.delete', [$store->id]) ?>" method="post">
+											<input type="hidden" name="_method" value="delete">
+										<button class="dropdown-item" type="submit"><i class="dw dw-delete-3"></i> حذف</button>
+										</form>
+										
 									</div>
 								</div>
 							</td>
 						</tr>
-
-
-
-						
+						<?php $numberPlus++; } ?>						
 					</tbody>
 				</table>
 			</div>

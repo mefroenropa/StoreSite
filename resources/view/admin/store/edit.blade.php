@@ -1,8 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('head-tag')
-    <title>قسمت انبار داری ویرایش</title>
-    <link rel="stylesheet" type="text/css" href="<?= asset('src/plugins/jquery-steps/jquery.steps.css')?>">
+    <title> قسمت انبار داری ویرایش</title>
 
 @endsection
 
@@ -14,28 +13,31 @@
             <div class="clearfix">
                 <div class="clearfix">
                     <div class="pull-right">
-                        <h4 class="text-blue h4 text-right"> مدیریت تعداد محصول ویرایش </h4>
+                        <h4 class="text-blue h4 text-right"> مدیریت تعداد محصول </h4>
                     </div>
                     <div class="pull-left">
-                        <a href="index" class="btn btn-danger d-inline">بازگشت</a>
+                        <a href="<?= route('admin.store.index') ?>" class="btn btn-danger d-inline">بازگشت</a>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="pd-20 card-box mb-30 text-right">
-            	<form>
+            	<form action="<?= route('admin.store.update', [$store->id]) ?>" method="POST">
+                    <input type="hidden" name="_method" value="put">
                     <div class="form-group">
                         <label>کالایه مورد نظر را انتخاب کنید</label>
-                        <select class="form-control text-right" name="parent_id" >
-                            <option value="0">یکی از کالا ها را انتخاب کنید</option>
-                            <option value="1">لب تاپ</option>
-                            <option value="1">یخجال</option>
-                            <option value="1">دوچرخه</option>
+                        <select class="form-control text-right <?= errorClass('product_id') ?>" name="product_id" >
+                            <?php foreach($products as $product){ ?>                            
+                                <option value="<?= $product->id ?>" <?= oldOrValue('product_id', $store->product_id) == $product->id ? 'selected' : ''; ?>><?= $product->title ?></option>
+                            <?php } ?>                            
+                                
                         </select>
+                        <?= errorText('product_id') ?>
                     </div>
                     <div class="form-group">
                         <label>تعداد موجودی را وارد کنید</label>
-                        <input class="form-control text-right" name="name" type="text" placeholder="مثال : 20">
+                        <input value="<?= oldOrValue('firstCount', $store->firstCount) ?>" class="form-control text-right <?= errorClass('firstCount') ?>" name="firstCount" type="text" placeholder="مثال : 20">
+                        <?= errorText('firstCount') ?>
                     </div>
 
                     <div class="form-group">
