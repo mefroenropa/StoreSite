@@ -7,6 +7,8 @@ CREATE TABLE `bought` (
   `user_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
   `cart_id` bigint(20) NOT NULL,
+  `price` bigint(20) NOT NULL,
+  `status` enum('0','1','2','3') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
