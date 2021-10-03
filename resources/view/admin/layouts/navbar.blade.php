@@ -28,7 +28,7 @@
                         <li><a href="<?= route('admin.product.index') ?>"> محصولات </a></li>
                         <li><a href="<?= route('admin.category.index') ?>">  دسته بندی ها </a></li>
                         <li><a href="<?= route('admin.discount.index') ?>"> کد تخفیف ها</a></li>
-                        <li><a href="index"> انبار داری</a></li>
+                        <li><a href="<?= route('admin.store.index') ?>"> انبار داری</a></li>
                     </ul>
                 </li>
 
