@@ -70,3 +70,8 @@ Route::post('/admin/store/store', 'Admin\StoreController@store', 'admin.store.st
 Route::get('/admin/store/edit/{id}', 'Admin\StoreController@edit', 'admin.store.edit');
 Route::put('/admin/store/update/{id}', 'Admin\StoreController@update', 'admin.store.update');
 Route::delete('/admin/store/delete/{id}', 'Admin\StoreController@destroy', 'admin.store.delete');
+
+//admin sold routes
+Route::get('/admin/sold', 'Admin\SoldController@index', 'admin.sold.index');
+Route::get('/admin/sold/{status}/{id}', 'Admin\SoldController@status', 'admin.sold.status');
+
