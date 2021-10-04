@@ -20,5 +20,13 @@ class User extends Model
         return $this->hasMany('\App\User', 'user_id', 'id');
     }
 
+    public function wishlist(){
+        return $this->hasMany("\App\Wishlist", 'user_id', 'id');
+    }
+
+    public function carts(){
+        return $this->hasMany("\App\Cart", 'user_id', 'id');
+    }
+
 
 }
