@@ -3,14 +3,28 @@
 use System\Router\Web\Route;
 //home routes
 Route::get('/', 'HomeController@index', 'home.index');
-
-Route::get('/products', 'HomeController@products', 'product.products');
+Route::get('/home', 'HomeController@index', 'home.home');
+// product routes
+Route::get('/products/{category}', 'HomeController@products', 'product.products');
+Route::get('/search', 'HomeController@search', 'product.search');
 
 Route::get('/product/{id}', 'HomeController@show', 'product.show');
 
 Route::get('/view-plus/{id}', 'HomeController@viewPlus', 'view.plus');
 
+//comment routes
 Route::post('/comment/store/{id}', 'HomeController@commentStore', 'comment.store');
+
+// wishlist routes
+Route::get('/wishlist', 'HomeController@wishlist', 'wishlist');
+Route::get('/add-to-wishlist/{id}', 'HomeController@wishlistAdd', 'add.to.wishlist');
+Route::delete('/wishlist/delete/{id}', 'HomeController@wishlistDestory', 'wishlist.delete');
+
+//cart routes 
+Route::post('/cart/store', 'HomeController@cartStore', 'cart.store');
+Route::delete('/cart/delete/{id}', 'HomeController@cartDestory', 'cart.delete');
+Route::get('/cart-list', 'HomeController@cartList', 'cart.list');
+Route::get('/checkout', 'HomeController@checkout', 'checkout');
 
 
 //////////////////////
