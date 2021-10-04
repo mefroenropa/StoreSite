@@ -3,6 +3,21 @@
 use System\Router\Web\Route;
 //home routes
 Route::get('/', 'HomeController@index', 'home.index');
+
+Route::get('/products', 'HomeController@products', 'product.products');
+
+Route::get('/product/{id}', 'HomeController@show', 'product.show');
+
+Route::get('/view-plus/{id}', 'HomeController@viewPlus', 'view.plus');
+
+Route::post('/comment/store/{id}', 'HomeController@commentStore', 'comment.store');
+
+
+//////////////////////
+// home routes ended//
+//////////////////////
+
+
 //auth routes
 Route::get('/forgot', 'Auth\ForgotController@view', 'auth.forgot.view');
 Route::post('/forgot', 'Auth\ForgotController@forgot', 'auth.forgot');
@@ -81,3 +96,6 @@ Route::get('/admin/comment/isConfirm/{isConfirm}/{id}', 'Admin\CommentController
 Route::get('/admin/comment/unConfirm', 'Admin\CommentController@unConfirm', 'admin.comment.unConfirm');
 Route::delete('/admin/comment/delete/{id}', 'Admin\CommentController@destroy', 'admin.comment.delete');
 
+//////////////////////
+// admin routes ended//
+//////////////////////
