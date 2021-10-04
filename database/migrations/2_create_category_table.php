@@ -2,8 +2,10 @@
 return ["
 CREATE TABLE `categories` (
   `id` bigint(11) NOT NULL,
-  `name` varchar(244) COLLATE utf8mb4_persian_ci NOT NULL,
   `user_id` bigint(20) NOT NULL,
+  `image` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `name` varchar(244) COLLATE utf8mb4_persian_ci NOT NULL,
+  `englishName` varchar(255) COLLATE utf8mb4_persian_ci NOT NULL,
   `parent_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
