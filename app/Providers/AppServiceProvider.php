@@ -2,32 +2,35 @@
 
 namespace App\Providers;
 
-use App\Ads;
+use App\Cart;
 use App\Category;
-use App\Post;
-use App\User;
+use System\Auth\Auth;
 use System\View\Composer;
 
 class AppServiceProvider extends Provider
 {
     public function boot()
     {
-        // Composer::view("app.index",  function (){
-        //     $ads = Ads::all();
-        //     $sumArea = 0;
-        //     foreach ($ads as $advertise)
-        //     {
-        //         $sumArea += (int) $advertise->area;
-        //     }
-        //     $usersCount = count(User::all());
-        //     $postsCount = count(Post::all());
-        //     return [
-        //         "sumArea"       => $sumArea,
-        //         "usersCount"    => $usersCount,
-        //         "adsCount"      => count($ads),
-        //         "postsCount"    => $postsCount
-        //     ];
-        // });
+        Composer::view("app.layouts.master",  function (){
+            $carts = Cart::where('user_id', Auth::user()->id)->where('isPaid', 0)->get();
+            $cartCount = count(Cart::where('user_id', Auth::user()->id)->where('isPaid', 0)->get());
+            $sumAomuont = 0;
+            foreach($carts as $cartItem){
+                $sumAomuont += (int)$cartItem->product()->amount;
+            }
+            $wishlistCount = count(Auth::user()->wishlist()->get());
+            $categoriesMaster = Category::all();
+            
+            return [
+                "carts"              => $carts,
+                "cartCount"          => $cartCount,
+                "sumAomuont"         => $sumAomuont,
+                "wishlistCount"      => $wishlistCount,
+                "categoriesMaster"   => $categoriesMaster,
+              
+               
+            ];
+        });
 
     }
 }
