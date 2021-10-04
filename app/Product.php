@@ -46,6 +46,11 @@ class Product extends Model
         return $this->belongsTo("\App\Category", "cat_id", "id");
     }
 
+    public function wishlist()
+    {
+        return $this->belongsTo("\App\Wishlist", "product_id", "id");
+    }
+
     public function comments()
     {
         return $this->hasMany("\App\Comment", 'product_id', 'id')->where('isConfirm', 1);
