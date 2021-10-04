@@ -45,19 +45,6 @@ trait HasCRUD{
         return [];
     }
 
-    protected function findMethod($id){
-
-        $this->setSql("SELECT * FROM ".$this->getTableName());
-        $this->setWhere("AND", $this->getAttributeName($this->primaryKey)." = ? ");
-        $this->addValue($this->primaryKey, $id);
-        $statement = $this->executeQuery();
-        $data = $statement->fetch();
-        $this->setAllowedMethods(['update', 'delete', 'save']);
-        if ($data)
-        return $this->arrayToAttributes($data);
-        return null;
-    }
-
     protected function whereMethod($attribute, $firstValue, $secondValue = null){
         
         if($secondValue === null){
@@ -70,7 +57,7 @@ trait HasCRUD{
         }
         $operator = 'AND';
         $this->setWhere($operator, $condition);
-        $this->setAllowedMethods(['where', 'whereOr', 'whereIn', 'whereNull', 'whereNotNull', 'limit', 'orderBy', 'get', 'paginate']);
+        $this->setAllowedMethods(['where', 'whereOr', 'whereIn', 'whereNull', 'whereNotNull', 'limit', 'orderBy', 'get', 'paginate', 'first']);
         return $this;
     }
 
@@ -159,6 +146,43 @@ trait HasCRUD{
         if ($data){
            $this->arrayToObjects($data);
            return $this->collection;
+        }
+        return [];
+    }
+    
+    protected function findMethod($id){
+
+        $this->setSql("SELECT * FROM ".$this->getTableName());
+        $this->setWhere("AND", $this->getAttributeName($this->primaryKey)." = ? ");
+        $this->addValue($this->primaryKey, $id);
+        $statement = $this->executeQuery();
+        $data = $statement->fetch();
+        $this->setAllowedMethods(['update', 'delete', 'save']);
+        if ($data)
+        return $this->arrayToAttributes($data);
+        return null;
+    }
+
+
+    protected function firstMethod($array = []){
+        if($this->sql == ''){
+            if(empty($array)){
+                $fields = $this->getTableName().'.*';
+            }
+            else{
+                foreach($array as $key => $field){
+                    $array[$key] = $this->getAttributeName($field);
+                }
+                $fields = implode(' , ', $array);
+            }
+            $this->setSql("SELECT $fields FROM ".$this->getTableName());
+        }
+
+        $statement = $this->executeQuery();
+        $data = $statement->fetch();
+        if ($data){
+            return $this->arrayToAttributes($data);
+            
         }
         return [];
     }
