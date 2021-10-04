@@ -33,6 +33,7 @@
 				<!-- row -->
 				<div class="row">
                     <h1 class="alert alert-warning text-right">صفحه مورد نظر یافت نشد</h1>
+				
 				</div>
 				<!-- /row -->
 			</div>

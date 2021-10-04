@@ -26,6 +26,7 @@
 					<thead>
 						<tr>
 							<th># </th>
+							<th>عکس</th>
 
 							<th class="table-plus datatable-nosort">نام</th>
 							<th>سازنده </th>
@@ -39,6 +40,7 @@
 						<?php $numberPlus =1; foreach($categories as $category){ ?>
 							<tr >
 							<td><?= $numberPlus; ?></td>
+							<td><img src="<?= $category->image ?>" width="70" height="70" alt=""></td>
 
 							<td> <?= $category->name ?> </td>
 							<td> <?= fullUsername($category->user()) ?>  </td>

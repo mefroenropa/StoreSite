@@ -23,11 +23,21 @@
             </div>
             <hr>
             <div class="pd-20 card-box mb-30 text-right">
-                <form action="<?= route('admin.category.update', [$category->id]) ?>" method="POST">
+                <form action="<?= route('admin.category.update', [$category->id]) ?>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="put">
                     <div class="form-group">
                         <label>نام دسته بندی</label>
                         <input value="<?= oldOrValue('name', $category->name) ?>" class="form-control <?= errorClass('name') ?>" name="name" type="text">
+                        <?= errorText('name') ?>
+                    </div>
+                    <div class="form-group">
+                        <label>نام انگلیسی دسته بندی</label>
+                        <input value="<?= oldOrValue('englishName', $category->englishName) ?>" class="form-control text-righ <?= errorClass('englishName') ?>" name="englishName" type="text">
+                        <?= errorText('englishName') ?>
+                    </div>
+                    <div class="form-group">
+                        <label>عکس مورد نظر را انتخاب کنید</label>
+                        <input type="file" name="image" class="form-control" />
                         <?= errorText('name') ?>
                     </div>
                     <div class="form-group">

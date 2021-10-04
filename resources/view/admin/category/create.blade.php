@@ -23,11 +23,21 @@
             </div>
             <hr>
             <div class="pd-20 card-box mb-30 text-right">
-            	<form action="<?= route('admin.category.store') ?>" method="POST">
+            	<form action="<?= route('admin.category.store') ?>" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>نام دسته بندی</label>
-                        <input class="form-control text-righ <?= errorClass('name') ?>" name="name" type="text">
+                        <input  value="<?= old('name') ?>" class="form-control text-righ <?= errorClass('name') ?>" name="name" type="text">
                         <?= errorText('name') ?>
+                    </div>
+                    <div class="form-group">
+                        <label>نام انگلیسی دسته بندی</label>
+                        <input value="<?= old('englishName') ?>" class="form-control text-righ <?= errorClass('englishName') ?>" name="englishName" type="text">
+                        <?= errorText('englishName') ?>
+                    </div>
+                    <div class="form-group">
+                        <label>عکس مورد نظر را انتخاب کنید</label>
+                        <input type="file" name="image" class="form-control" />
+                        <?= errorText('image') ?>
                     </div>
                     <div class="form-group">
                         <label>دسته بندی والد</label>

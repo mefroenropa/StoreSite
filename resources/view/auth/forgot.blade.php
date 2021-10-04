@@ -1,4 +1,4 @@
-@extends('admin.layouts.page')
+@extends('auth.layouts.page')
 
 
 

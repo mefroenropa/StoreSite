@@ -14,20 +14,22 @@
             <!-- row -->
             <div class="row">
                 <!-- shop -->
-                <div class="col-md-4 col-xs-6">
-                    <div class="shop">
-                        <div class="shop-img">
-                            <img src="./img/shop01.png" alt="" title="">
-                        </div>
-                        <div class="shop-body">
-                            <h3>Laptop<br>Collection</h3>
-                            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                <?php foreach($categories as $category){ ?>
+                    <div class="col-md-4 col-xs-6">
+                        <div class="shop">
+                            <div class="shop-img">
+                                <img src="<?= $category->image ?>" alt="<?= $category->name ?>" title="<?= $category->name ?>">
+                            </div>
+                            <div class="shop-body">
+                                <h3><?= $category->name ?><br>دسته بندی</h3>
+                                <a href="<?= route('product.products', [$category->englishName]) ?>" class="cta-btn">برو به صفحه این دسته بندی <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php } ?>
                 <!-- /shop -->
 
-                <!-- shop -->
+                <!-- 
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
@@ -39,9 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /shop -->
-
-                <!-- shop -->
+             
                 <div class="col-md-4 col-xs-6">
                     <div class="shop">
                         <div class="shop-img">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /shop -->
+               /shop -->
             </div>
             <!-- /row -->
         </div>
@@ -91,7 +91,8 @@
                                             <div class="product-img">
                                                 <img src="<?= asset($product->photo()->image) ?>" alt="">
                                                 <div class="product-label">
-                                                   <!-- <span class="sale">-90%</span> -->
+                                                    <?= $product->discount != null ? '<span class="sale">%'.discountPercent($product->amount, $product->discount).'</span>'  : '' ?> 
+
                                                     <!-- <span class="new">NEW</span> -->
                                                 </div>
                                             </div>
@@ -104,13 +105,18 @@
                                                 <?= putStars($product->stars()) ?>
                                                 </div>
                                                 <div class="product-btns">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">افزودن به علاقه مندی ها</span></button>
+                                                    <a class="add-to-wishlist" href="<?= route('add.to.wishlist', [$product->id]) ?>"><i class="fa fa-heart-o"></i><span class="tooltipp">افزودن به علاقه مندی ها</span></a>
                                                     <!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> -->
                                                     <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"><?= $product->viewCount() ?></span></button>
                                                 </div>
                                             </div>
                                             <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>افزودن به سبد خرید</button>
+                                                <form action="<?= route('cart.store') ?>" method="post">
+                                                    <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                                                    <input type="hidden" name="count" value="1">
+								                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید  </button>
+
+                                                </form>
                                             </div>
                                         </div>
                                         <?php } ?>
@@ -159,7 +165,7 @@
                                                 <div class="product-img">
                                                     <img src="<?= asset($product->photo()->image) ?>" alt="">
                                                     <div class="product-label">
-                                                       <!-- <span class="sale">-90%</span> -->
+                                                        <?= $product->discount != null ? '<span class="sale">%'.discountPercent($product->amount, $product->discount).'</span>'  : '' ?> 
                                                         <!-- <span class="new">NEW</span> -->
                                                     </div>
                                                 </div>

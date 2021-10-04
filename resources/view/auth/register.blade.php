@@ -1,4 +1,4 @@
-@extends('admin.layouts.page')
+@extends('auth.layouts.page')
 
 @section('head-tag')
 <title>صفحه ثبت نام</title>
