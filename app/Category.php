@@ -12,11 +12,17 @@ class Category extends Model
     use HasSoftDelete;
 
     protected $table = "categories";
-    protected $fillable = ['name', 'user_id', 'parent_id'];
+    protected $fillable = ['name', 'user_id', 'parent_id', 'image', 'englishName'];
+    protected $casts = ['imgae' => 'array'];
+
     protected $deletedAt = 'deleted_at';
 
     public function user(){
         return $this->belongsTo('\App\User', 'user_id', 'id');
+    }
+
+    public function parents(){
+        return $this->hasMany('\App\Category', 'parent_id', 'id');
     }
 
     public function parent(){
