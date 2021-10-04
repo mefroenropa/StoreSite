@@ -37,21 +37,11 @@
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
+							<?php foreach($galleries as $gallery) { ?>
 							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
+								<img src="<?= asset($gallery->image) ?>" alt="">
 							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
+							<?php } ?>
 						</div>
 					</div>
 					<!-- /Product main img -->
@@ -59,45 +49,30 @@
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
+							<?php foreach($galleries as $gallery) { ?>
+								<div class="product-preview">
+									<img src="<?= asset($gallery->image) ?>" alt="">
+								</div>
+								<?php } ?>
 						</div>
 					</div>
 					<!-- /Product thumb imgs -->
 
 					<!-- Product details -->
 					<div class="col-md-5">
-						<div class="product-details">
-							<h2 class="product-name">product name goes here</h2>
+						<div class="product-details text-right">
+							<h2 class="product-name"><?= $product->title ?></h2>
 							<div>
 								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
+									<?= putStars($product->stars()) ?>
 								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+								<a class="review-link" href="#comments"> نظرات  <?= count($product->comments()->get()) ?>| نظر خود را ثبت کنید </a>
 							</div>
 							<div>
-								<h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
-								<span class="product-available">In Stock</span>
+								<h3 class="product-price"><?= $product->amount ?> <?= $product->discount != null ? '<del class="product-old-price">'.$product->discount.' تومان </del>' : '';?> </h3>
+								<?= $product->storeCount() >= 1 ? ' <span class="product-available">موجود در انبار </span>' : ' <span class="product-available"> ناموجود </span>'; ?>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
+							<?= substr(html($product->body), 0 , 60) . " ادامه دارد ... " ?>
 							<div class="product-options">
 								<label>
 									Size
@@ -131,18 +106,12 @@
 							</ul>
 
 							<ul class="product-links">
-								<li>Category:</li>
-								<li><a href="#">Headphones</a></li>
-								<li><a href="#">Accessories</a></li>
+								<li><a href="#"><?= $product->category()->name ?></a></li>
+								<li> : دسته بندی  </li>
+								
 							</ul>
 
-							<ul class="product-links">
-								<li>Share:</li>
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i></a></li>
-							</ul>
+					
 
 						</div>
 					</div>
@@ -153,9 +122,9 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab1">توظیحات</a></li>
+								<li><a data-toggle="tab" href="#tab2">مشخصات فنی</a></li>
+								<li><a data-toggle="tab" id="comments" href="#tab3">نظرات (<?= count($product->comments()->get()) ?>)</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -165,7 +134,7 @@
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<?= html($product->body) ?>
 										</div>
 									</div>
 								</div>
@@ -175,7 +144,26 @@
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
 										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<table class="table" dir="rtl">
+												<caption class="text-right">مشخصات فنی محصول</caption>
+												<thead >
+													<tr>
+														<th class="text-right" scope="col">مشخصات </th>
+														<th class="text-right" scope="col">مقدار</th>
+														
+													</tr>
+												</thead>
+												<tbody>
+													<?php foreach($productAttributes as $key => $value){ ?>
+														<tr>
+														  <th class="text-right" scope="row"><?= $key ?></th>
+														  <th class="text-right" scope="row"><?= $value ?></th>
+														  
+													  </tr>
+													  <?php } ?>
+												
+												</tbody>
+											  </table>
 										</div>
 									</div>
 								</div>
@@ -188,13 +176,9 @@
 										<div class="col-md-3">
 											<div id="rating">
 												<div class="rating-avg">
-													<span>4.5</span>
+													<span><?= $product->stars() ?></span>
 													<div class="rating-stars">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
+														<?= putStars($product->stars()) ?>
 													</div>
 												</div>
 												<ul class="rating">
@@ -207,9 +191,9 @@
 															<i class="fa fa-star"></i>
 														</div>
 														<div class="rating-progress">
-															<div style="width: 80%;"></div>
+															<div style="width: <?= $product->commentPercent(5) ?>%;"></div>
 														</div>
-														<span class="sum">3</span>
+														<span class="sum"><?= $product->countCommentOrderByStar(5) ?></span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -220,9 +204,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div style="width: 60%;"></div>
+															<div style="width: <?= $product->commentPercent(4) ?>%;"></div>
 														</div>
-														<span class="sum">2</span>
+														<span class="sum"><?= $product->countCommentOrderByStar(4) ?></span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -233,9 +217,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div></div>
+															<div style="width: <?= $product->commentPercent(3) ?>%;"></div>
 														</div>
-														<span class="sum">0</span>
+														<span class="sum"><?= $product->countCommentOrderByStar(3) ?></span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -246,9 +230,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div></div>
+															<div style="width: <?= $product->commentPercent(2) ?>%;"></div>
 														</div>
-														<span class="sum">0</span>
+														<span class="sum"><?= $product->countCommentOrderByStar(2) ?></span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -259,9 +243,9 @@
 															<i class="fa fa-star-o"></i>
 														</div>
 														<div class="rating-progress">
-															<div></div>
+															<div style="width: <?= $product->commentPercent(1) ?>%;"></div>
 														</div>
-														<span class="sum">0</span>
+														<span class="sum"><?= $product->countCommentOrderByStar(1) ?></span>
 													</li>
 												</ul>
 											</div>
@@ -272,61 +256,25 @@
 										<div class="col-md-6">
 											<div id="reviews">
 												<ul class="reviews">
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
+													<?php foreach(paginate($product->comments()->get(),4) as $comment){ ?>
+														<li>
+															<div class="review-heading">
+																<h5 class="name"><?= fullUsername($comment->user()) ?></h5>
+																<p class="date"><?= $comment->created_at ?></p>
+																<div class="review-rating">
+																	<?= putStars($comment->star_count) ?>
+																</div>
 															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
+															<div class="review-body">
+																<p><?= $comment->comment ?></p>
 															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
+														</li>							
+													<?php } ?>
 												</ul>
+												
 												<ul class="reviews-pagination">
-													<li class="active">1</li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+												
+													<?= paginateView($product->comments()->get(), 4) ?>
 												</ul>
 											</div>
 										</div>
@@ -335,21 +283,19 @@
 										<!-- Review Form -->
 										<div class="col-md-3">
 											<div id="review-form">
-												<form class="review-form">
-													<input class="input" type="text" placeholder="Your Name">
-													<input class="input" type="email" placeholder="Your Email">
-													<textarea class="input" placeholder="Your Review"></textarea>
+												<form class="review-form" action="<?= route('comment.store', [$product->id]) ?>" method="POST">
+													<textarea class="input" name="comment" placeholder="نظر شما "></textarea>
 													<div class="input-rating">
-														<span>Your Rating: </span>
+														<span>امتیاز دهید : </span>
 														<div class="stars">
-															<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-															<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-															<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-															<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-															<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+															<input id="star5" name="star_count" value="5" type="radio"><label for="star5"></label>
+															<input id="star4" name="star_count" value="4" type="radio"><label for="star4"></label>
+															<input id="star3" name="star_count" value="3" type="radio"><label for="star3"></label>
+															<input id="star2" name="star_count" value="2" type="radio"><label for="star2"></label>
+															<input id="star1" name="star_count" value="1" type="radio"><label for="star1"></label>
 														</div>
 													</div>
-													<button class="primary-btn">Submit</button>
+													<button class="primary-btn">ارسال</button>
 												</form>
 											</div>
 										</div>
