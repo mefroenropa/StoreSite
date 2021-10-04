@@ -12,7 +12,7 @@ class Cart extends Model
     use HasSoftDelete;
 
     protected $table = "cart";
-    protected $fillable = ['count', 'isPaid', 'product_id'];
+    protected $fillable = ['user_id', 'count', 'isPaid', 'product_id'];
     protected $deletedAt = 'deleted_at';
 
     public function user(){
@@ -20,7 +20,7 @@ class Cart extends Model
     }
 
     public function product(){
-        return $this->belongsTo('\App\Product', 'cat_id', 'id');
+        return $this->belongsTo('\App\Product', 'product_id', 'id');
     }
 
 }
