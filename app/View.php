@@ -4,13 +4,16 @@ namespace App;
 
 
 use System\Database\ORM\Model;
+use System\Database\Traits\HasSoftDelete;
 
-class Store extends Model
+class View extends Model
 {
 
+    use HasSoftDelete;
 
-    protected $table = "Store";
-    protected $fillable = ['product_id', 'user_id', 'firstCount'];
+    protected $table = "views";
+    protected $fillable = ['product_id', 'user_id', 'view_count', 'ip_address', 'page_lists'];
+    protected $deletedAt = 'deleted_at';
 
     public function user(){
         return $this->belongsTo('\App\User', 'user_id', 'id');
