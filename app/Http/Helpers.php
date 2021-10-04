@@ -82,6 +82,18 @@ function paginateUrl($page){
     
 }
 
+function getCaller($name, $value){
+
+    $urlArray = explode('?', currentUrl());
+    if(isset($urlArray[1])){
+        $_GET[$name] = $value;
+        $getVariables = array_map(function($value, $key){return $key . "=" . $value;}, $_GET, array_keys($_GET));
+        return $urlArray[0] . "?" . implode("&", $getVariables);
+    }else{
+        return currentUrl() . "?".$name."=".$value;
+    }
+    
+}
 
 function putStars($number){
     $starHtml = '';
@@ -94,4 +106,12 @@ function putStars($number){
     }
 
     return $starHtml;
+}
+
+
+
+function discountPercent($amount, $discount){
+    $percent = round((int)($amount * 100) / $discount, 0);
+    
+    return 100 - $percent;
 }
