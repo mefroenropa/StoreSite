@@ -7,41 +7,24 @@
 @section('content')
 
 		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li class="active">Headphones (227,490 Results)</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+	
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
-		<div class="section">
+		<div class="section ">
 			<!-- container -->
-			<div class="container">
+			<div class="container ">
 				<!-- row -->
 				<div class="row">
 					<!-- ASIDE -->
-					<div id="aside" class="col-md-3">
+					<div id="aside" class="col-md-3 pull-right">
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Categories</h3>
+							<h3 class="aside-title text-right">دسته بندی ها</h3>
 							<div class="checkbox-filter">
 								<?php foreach($categories as $cateogry){ ?>
 								<a href="<?= route('product.products', [$cateogry->englishName]) ?>">
-									<div class="input-checkbox text-left">
+									<div class="input-checkbox text-right">
 									
 										<span></span>
 										<?= $cateogry->name ?>
@@ -54,8 +37,8 @@
 								<?php foreach($cateogry->parents()->get() as $categoryChild){ ?>
 								<a href="<?= route('product.products', [$categoryChild->englishName]) ?>">
 											
-								<li class="text-left"> --><?= $categoryChild->name ?>
-										<small>(<?= count($categoryChild->products()->get()) ?>)</small>
+								<li class="text-right"> <?= $categoryChild->name ?>
+										<small>(<?= count($categoryChild->products()->get()) ?>)</small><--
 											
 									</li>
 							</a>
@@ -66,11 +49,12 @@
 								<?php } ?>
 							</div>
 						</div>
+						<hr>
 						<!-- /aside Widget -->
 
-						<!-- aside Widget -->
+						<!-- aside Widget
 						<div class="aside">
-							<h3 class="aside-title">Price</h3>
+							<h3 class="aside-title text-right">قیمت</h3>
 							<div class="price-filter">
 								<div id="price-slider"></div>
 								<div class="input-number price-min">
@@ -86,15 +70,16 @@
 								</div>
 							</div>
 						</div>
-						<!-- /aside Widget -->
+						/aside Widget -->
 
 						<!-- aside Widget -->
-						<div class="aside">
-							<h3 class="aside-title">Brand</h3>
+						<div class="aside text-right">
+							<h3 class="aside-title text-right">برند ها</h3>
+
 							<div class="checkbox-filter">
 								<?php foreach($brands as $brand){ ?>
 									<a href="<?= getCaller('brand', $brand->name) ?>">
-										<div class="input-checkbox">
+										<div class="input-checkbox text-right">
 										<label for="brand-1">
 											<span></span>
 											<?= $brand->name ?>
@@ -107,10 +92,11 @@
 							</div>
 						</div>
 						<!-- /aside Widget -->
+						<hr>
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Top selling</h3>
+							<h3 class="aside-title text-right">پر فروش ها</h3>
 							<?php foreach($mustPopular as $topSell){ ?>
 							<div class="product-widget">
 								<div class="product-img">
@@ -131,7 +117,7 @@
 					<!-- /ASIDE -->
 
 					<!-- STORE -->
-					<div id="store" class="col-md-9">
+					<div id="store" class="col-md-9 pull-right">
 						<!-- store top filter -->
 					
 						<!-- /store top filter -->
@@ -141,8 +127,8 @@
 							<!-- product -->
 							
 							<?php foreach(paginate($products, 9) as $product){ ?>
-								<div class="col-md-4 col-xs-6">
-                                        <div class="product">
+								<div class="col-md-4 col-xs-6 pull-right">
+                                        <div class="product ">
                                             <div class="product-img">
                                                 <img src="<?= asset($product->photo()->image) ?>" alt="">
                                                 <div class="product-label">
@@ -151,7 +137,7 @@
                                                     <!-- <span class="new">NEW</span> -->
                                                 </div>
                                             </div>
-                                            <div class="product-body">
+                                            <div class="product-body" style="height: 210px;">
                                                 <p class="product-category"><?= $product->category()->name ?></p>
                                                 <h3 class="product-name" title="<?= $product->title?>"><a href="<?= route('view.plus', [$product->id]) ?>"><?= substr($product->title, 0, 40) ?>...</a></h3>
                                                 <h4 class="product-price"> تومان <?= $product->amount ?> <?= $product->discount != null ? ' <del class="product-old-price"> '.$product->discount.' تومان </del>' : '';?> </h4>
@@ -184,7 +170,7 @@
 						<!-- store bottom filter -->
 						<div class="store-filter clearfix">
 							<span class="store-qty">Showing 0 , 9 products</span>
-							<ul class="store-pagination">
+							<ul class="store-pagination " style="width: 400px;margin: 0 auto;">
 								<?= paginateView($products, 9) ?>
 							</ul>
 						</div>
@@ -199,5 +185,6 @@
 		<!-- /SECTION -->
 
         @endsection
+
 
 

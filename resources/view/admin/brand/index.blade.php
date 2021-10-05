@@ -18,7 +18,6 @@
                 </div>
                 <div class="pull-left">
                     <a href="<?= route('admin.brand.create') ?>" class="btn btn-success d-inline">افزودن برند جدید</a>
-                    <a href="<?= route('admin.brand.archive') ?>" class="btn btn-warning d-inline">برند هایه بایگانی شده</a>
                 </div>
             </div>
  

@@ -18,7 +18,6 @@
                 </div>
                 <div class="pull-left">
                     <a href="<?= route('admin.product.create') ?>" class="btn btn-success d-inline">افزودن محصول جدید</a>
-                    <a href="<?= route('admin.product.archive') ?>" class="btn btn-warning d-inline">محصولات بایگانی شده</a>
                 </div>
             </div>
  

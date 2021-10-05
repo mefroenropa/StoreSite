@@ -6,11 +6,11 @@
 @endsection
 
 @section('content')
-		<!-- BREADCRUMB -->
+		<!-- 
 		<div id="breadcrumb" class="section">
-			<!-- container -->
+			
 			<div class="container">
-				<!-- row -->
+				
 				<div class="row">
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">404 not found Page</h3>
@@ -20,11 +20,11 @@
 						</ul>
 					</div>
 				</div>
-				<!-- /row -->
+				
 			</div>
-			<!-- /container -->
+			
 		</div>
-		<!-- /BREADCRUMB -->
+		/BREADCRUMB -->
 
 		<!-- SECTION -->
 		<div class="section">

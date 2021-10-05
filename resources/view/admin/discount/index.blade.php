@@ -18,7 +18,6 @@
                 </div>
                 <div class="pull-left">
                     <a href="<?= route('admin.discount.create') ?>" class="btn btn-success d-inline">افزودن  کد تخفیف جدید</a>
-                    <a href="<?= route('admin.discount.archive') ?>" class="btn btn-warning d-inline"> کد تخفیف هایه بایگانی شده</a>
                 </div>
             </div>
  

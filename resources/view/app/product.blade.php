@@ -7,25 +7,7 @@
 @section('content')
 
 		<!-- BREADCRUMB -->
-		<div id="breadcrumb" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Headphones</a></li>
-							<li class="active">Product name goes here</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
+
 		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
@@ -112,7 +94,7 @@
 							</ul>
 
 							<ul class="product-links">
-								<li><a href="#"><?= $product->category()->name ?></a></li>
+								<li><a href="<?= route('product.products', [$product->category()->englishName]) ?>"><?= $product->category()->name ?></a></li>
 								<li> : دسته بندی  </li>
 								
 							</ul>
@@ -139,7 +121,7 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in ">
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-12 text-right">
 											<?= html($product->body) ?>
 										</div>
 									</div>
@@ -264,15 +246,16 @@
 												<ul class="reviews">
 													<?php foreach(paginate($product->comments()->get(),4) as $comment){ ?>
 														<li>
-															<div class="review-heading">
+															<div class="review-body text-right">
+																<p class="text-right"><?= $comment->comment ?></p>
+															
+															</div>
+															<div class="review-heading text-right">
 																<h5 class="name"><?= fullUsername($comment->user()) ?></h5>
 																<p class="date"><?= $comment->created_at ?></p>
 																<div class="review-rating">
 																	<?= putStars($comment->star_count) ?>
 																</div>
-															</div>
-															<div class="review-body">
-																<p><?= $comment->comment ?></p>
 															</div>
 														</li>							
 													<?php } ?>
@@ -290,8 +273,8 @@
 										<div class="col-md-3">
 											<div id="review-form">
 												<form class="review-form" action="<?= route('comment.store', [$product->id]) ?>" method="POST">
-													<textarea class="input" name="comment" placeholder="نظر شما "></textarea>
-													<div class="input-rating">
+													<textarea class="input text-right" name="comment" placeholder="نظر شما "></textarea>
+													<div class="input-rating text-right">
 														<span>امتیاز دهید : </span>
 														<div class="stars">
 															<input id="star5" name="star_count" value="5" type="radio"><label for="star5"></label>
@@ -330,7 +313,7 @@
 
 					<div class="col-md-12">
 						<div class="section-title text-center">
-							<h3 class="title">Related Products</h3>
+							<h3 class="title">اگهی هایه مرتبط</h3>
 						</div>
 					</div>
 

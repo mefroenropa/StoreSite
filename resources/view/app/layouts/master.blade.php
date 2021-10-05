@@ -9,10 +9,19 @@
 
 <body>
 
-    <?php if(errorExists('Unauthorized')){  ?>
-        <script> showError(); </script>
+    <?php  
+    if(flashExists('error')){
+         echo '<script> errorFlash("'.flashExists('error').'"); </script>'; 
+         
+    } ?>
+    <?php  
+    if(flashExists('success')){
+         echo '<script> successFlash("'.flashExists('success').'"); </script>'; 
+         
+    } ?>
         
-    <?php } ?>
+        
+  
     <!-- HEADER -->
     <header>
         <!-- TOP HEADER -->

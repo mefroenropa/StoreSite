@@ -32,13 +32,24 @@
     <![endif]-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-    function showError(){
-        Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'لطفا اپتدا وارد حساب کاربری خود شوید',
-      footer: '<a href="/login">ورود</a>'
-    });
+    function errorFlash(body){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'error',
+  title: body,
+  showConfirmButton: false,
+  timer: 1500
+});
+    }
+
+    function successFlash(body){
+      Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: body,
+  showConfirmButton: false,
+  timer: 1500
+});
     }
     
     </script>

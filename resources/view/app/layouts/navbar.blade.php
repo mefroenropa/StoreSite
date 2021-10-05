@@ -1,19 +1,16 @@
+
 <nav id="navigation">
     <!-- container -->
     <div class="container">
         <!-- responsive-nav -->
-        <div id="responsive-nav">
+        <div id="responsive-nav" dir="rtl!important">
             <!-- NAV -->
-            <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">products</a></li>
-                <li><a href="#">Categories</a>
-                </li>
-                
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Cameras</a></li>
-                <li><a href="#">Accessories</a></li>
+            <ul class="main-nav nav navbar-nav pull-right">
+                <li class="<?= sidebarActive(route('home.index'), false) ?>"><a href="<?= route('home.index') ?>">خانه</a></li>
+                <?php foreach($categoriesMaster as $category){ ?>
+                    <li class="<?= sidebarActive(route('product.products', [$category->englishName]), false) ?>"><a href="<?= route('product.products',  [$category->englishName]) ?>"><?= $category->name ?></a></li>
+                <?php } ?>
+               
             </ul>
             <!-- /NAV -->
         </div>

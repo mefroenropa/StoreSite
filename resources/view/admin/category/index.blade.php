@@ -17,7 +17,6 @@
                 </div>
                 <div class="pull-left">
                     <a href="<?= route('admin.category.create') ?>" class="btn btn-success d-inline">افزودن دسته بندی جدید</a>
-                    <a href="<?= route('admin.category.archive') ?>" class="btn btn-warning d-inline">دسته بندی هایه بایگانی شده</a>
                 </div>
             </div>
  
