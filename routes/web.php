@@ -47,6 +47,14 @@ Route::get('/register', 'Auth\RegisterController@view', 'auth.register.view');
 Route::post('/register', 'Auth\RegisterController@register', 'auth.register');
 Route::get('/activation/{token}', 'Auth\RegisterController@activation', 'auth.activation');
 
+// profile routes
+Route::get('/profile', 'Auth\ProfileController@index', 'profile.view');
+Route::get('/profile/edit/{id}', 'Auth\ProfileController@edit', 'profile.edit');
+Route::post('/profile/update/{id}', 'Auth\ProfileController@update', 'profile.update');
+Route::get('/profile/bought/show', 'Auth\ProfileController@boughtShow', 'profile.bought.show');
+
+
+
 //admin routes
 Route::get('/admin', 'Admin\AdminController@index', 'admin.index');
 
