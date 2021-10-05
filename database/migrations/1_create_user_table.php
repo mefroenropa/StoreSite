@@ -23,6 +23,10 @@ CREATE TABLE `users` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `avatar`, `password`, `status`, `is_active`, `verify_token`, `user_type`, `remember_token`, `remember_token_expire`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Guest@gmail.com', 'مهمان', '220044', '/images/avatar/2021/Oct/05/2021_10_05_08_37_09_76.jpg', '$2y$10NBiefWTu4Ks2.ayTud.6r.FK/rxRaInnAwtDMHT0xa7Yjv9cG51C.', 0, 1, '5f61b5831c2caed80e6adacd2aaae654800e1bca1764fcc0993b2e0a00a08694', 'guest', NULL, NULL, '2021-10-05 10:07:09', NULL, NULL);
+
 --
 -- Indexes for table `users`
 --
@@ -32,6 +36,8 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `users`
 --
+
+
 ALTER TABLE `users`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
