@@ -11,7 +11,6 @@ use App\Product;
 use App\View;
 use App\Wishlist;
 use System\Auth\Auth;
-use System\Database\DBBuilder\DBBuilder;
 use System\Request\Request;
 use System\Session\Session;
 
@@ -20,6 +19,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        
         $categories = Category::orderBy('created_at', 'asc')->limit(0, 3)->get();
         $newProducts = Product::orderBy('created_at', 'desc')->limit(0, 8)->get();
         $mustPopular = Product::orderBy('sold', 'desc')->limit(0, 8)->get();
@@ -113,6 +113,10 @@ class HomeController extends Controller
 
     public function wishlist()
     {
+        if(Auth::user()->user_type == "guest"){
+            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            return back();
+        }
       
         $wishlist = Auth::user()->wishlist()->get();
 
@@ -153,6 +157,10 @@ class HomeController extends Controller
 
     public function commentStore($id)
     {
+        if(Auth::user()->user_type == "guest"){
+            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            return back();
+        }
         $request = new Request;
         $inputs = $request->all();
         $inputs['product_id'] = $id;
@@ -165,6 +173,10 @@ class HomeController extends Controller
 
     public function cartList()
     {
+        if(Auth::user()->user_type == "guest"){
+            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            return back();
+        }
         $carts = Auth::user()->carts()->get();
         $cartCount = count(Cart::where('user_id', Auth::user()->id)->where('isPaid', 0)->get());
         $sumAomuont = 0;
@@ -179,6 +191,10 @@ class HomeController extends Controller
 
     public function cartStore()
     {
+        if(Auth::user()->user_type == "guest"){
+            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            return back();
+        }
         $request = new Request;
         $cart = Cart::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)->get()[0];
         if ($cart == null) {
