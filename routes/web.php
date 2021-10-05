@@ -4,6 +4,9 @@ use System\Router\Web\Route;
 //home routes
 Route::get('/', 'HomeController@index', 'home.index');
 Route::get('/home', 'HomeController@index', 'home.home');
+
+Route::post('/newslitter/register', 'HomeController@newslitterRegister', 'newslitter.register');
+
 // product routes
 Route::get('/products/{category}', 'HomeController@products', 'product.products');
 Route::get('/search', 'HomeController@search', 'product.search');
@@ -60,7 +63,7 @@ Route::get('/admin', 'Admin\AdminController@index', 'admin.index');
 
 //admin category routes
 Route::get('/admin/category', 'Admin\CategoryController@index', 'admin.category.index');
-Route::get('/admin/category/archive', 'Admin\CategoryController@archive', 'admin.category.archive');
+Route::get('/admin/category/restor/{id}', 'Admin\CategoryController@restor', 'admin.category.restor');
 Route::get('/admin/category/create', 'Admin\CategoryController@create', 'admin.category.create');
 Route::post('/admin/category/store', 'Admin\CategoryController@store', 'admin.category.store');
 Route::get('/admin/category/edit/{id}', 'Admin\CategoryController@edit', 'admin.category.edit');
@@ -69,7 +72,6 @@ Route::delete('/admin/category/delete/{id}', 'Admin\CategoryController@destroy',
 
 //admin product routes
 Route::get('/admin/product', 'Admin\ProductController@index', 'admin.product.index');
-Route::get('/admin/product/archive', 'Admin\ProductController@archive', 'admin.product.archive');
 Route::get('/admin/product/create', 'Admin\ProductController@create', 'admin.product.create');
 Route::post('/admin/product/store', 'Admin\ProductController@store', 'admin.product.store');
 Route::get('/admin/product/edit/{id}', 'Admin\ProductController@edit', 'admin.product.edit');
@@ -77,7 +79,6 @@ Route::put('/admin/product/update/{id}', 'Admin\ProductController@update', 'admi
 Route::delete('/admin/product/delete/{id}', 'Admin\ProductController@destroy', 'admin.product.delete');
 
 //admin gallery routes
-Route::get('/admin/gallery/archive', 'Admin\GalleryController@archive', 'admin.gallery.archive');
 Route::get('/admin/gallery/create/{id}', 'Admin\GalleryController@create', 'admin.gallery.create');
 Route::post('/admin/gallery/store/{id}', 'Admin\GalleryController@store', 'admin.gallery.store');
 Route::get('/admin/gallery/isFirst/{id}', 'Admin\GalleryController@isFirst', 'admin.gallery.isFirst');
@@ -85,7 +86,6 @@ Route::delete('/admin/gallery/delete/{id}', 'Admin\GalleryController@destroy', '
 
 //admin brand routes
 Route::get('/admin/brand', 'Admin\BrandController@index', 'admin.brand.index');
-Route::get('/admin/brand/archive', 'Admin\BrandController@archive', 'admin.brand.archive');
 Route::get('/admin/brand/create', 'Admin\BrandController@create', 'admin.brand.create');
 Route::post('/admin/brand/store', 'Admin\BrandController@store', 'admin.brand.store');
 Route::get('/admin/brand/edit/{id}', 'Admin\BrandController@edit', 'admin.brand.edit');
@@ -94,14 +94,12 @@ Route::delete('/admin/brand/delete/{id}', 'Admin\BrandController@destroy', 'admi
 
 //admin discount routes
 Route::get('/admin/discount', 'Admin\DiscountController@index', 'admin.discount.index');
-Route::get('/admin/discount/archive', 'Admin\DiscountController@archive', 'admin.discount.archive');
 Route::get('/admin/discount/create', 'Admin\DiscountController@create', 'admin.discount.create');
 Route::post('/admin/discount/store', 'Admin\DiscountController@store', 'admin.discount.store');
 Route::delete('/admin/discount/delete/{id}', 'Admin\DiscountController@destroy', 'admin.discount.delete');
 
 //admin store routes
 Route::get('/admin/store', 'Admin\StoreController@index', 'admin.store.index');
-Route::get('/admin/store/archive', 'Admin\StoreController@archive', 'admin.store.archive');
 Route::get('/admin/store/create', 'Admin\StoreController@create', 'admin.store.create');
 Route::post('/admin/store/store', 'Admin\StoreController@store', 'admin.store.store');
 Route::get('/admin/store/edit/{id}', 'Admin\StoreController@edit', 'admin.store.edit');
