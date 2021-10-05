@@ -19,11 +19,7 @@ class ProductController extends AdminController
         return view("admin.product.index", compact('categories', 'brands', 'products'));
     }
     
-    public function archive(){
-        $categories = Category::archive();
-        dd($categories);
-        return view("admin.product.archive", compact('categories'));
-    }
+ 
 
     public function create(){
         $categories = Category::all();

@@ -12,12 +12,6 @@ use System\Request\Request;
 
 class GalleryController extends AdminController
 {
-    public function archive()
-    {
-        $categories = Category::archive();
-        dd($categories);
-        return view("admin.product.archive", compact('categories'));
-    }
 
     public function create($id)
     {

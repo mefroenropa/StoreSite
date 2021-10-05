@@ -17,12 +17,7 @@ class CategoryController extends AdminController
         return view("admin.category.index", compact('categories'));
     }
 
-    public function archive()
-    {
-        $categories = Category::archive();
-        dd($categories);
-        return view("admin.category.archive", compact('categories'));
-    }
+
 
     public function create()
     {
@@ -34,12 +29,7 @@ class CategoryController extends AdminController
 
     public function store()
     {
-        // $request = new CategoryRequest;
-        // $inputs = $request->all();
-        // $path = 'images/categories/' . date('Y/M/d');
-        // $name = date('Y_m_d_H_i_s_') . rand(10, 99);
-        // $inputs['image'] = ImageUpload::UploadAndFitImage($request->file('image'), $path, $name, 480, 480);
-        // $inputs['user_id'] = Auth::user()->id;
+
         $request = new Request();
 
         $inputs = $request->all();
@@ -85,4 +75,7 @@ class CategoryController extends AdminController
         Category::delete($id);
         return back();
     }
+
+ 
+
 }

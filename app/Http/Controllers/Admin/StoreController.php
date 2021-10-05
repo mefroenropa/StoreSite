@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
 use System\Auth\Auth;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests\Admin\StoreRequest;
@@ -17,12 +16,7 @@ class StoreController extends AdminController
         return view("admin.store.index", compact('stores'));
     }
 
-    public function archive()
-    {
-        $categories = Category::archive();
-        dd($categories);
-        return view("admin.category.archive", compact('categories'));
-    }
+ 
 
     public function create()
     {

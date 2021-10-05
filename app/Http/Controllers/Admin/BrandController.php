@@ -16,11 +16,6 @@ class BrandController extends AdminController
         return view("admin.brand.index", compact('brands'));
     }
     
-    public function archive(){
-        $brands = Brand::archive();
-        
-        return view("admin.brand.archive", compact('brands'));
-    }
 
     public function create(){
         

@@ -16,12 +16,7 @@ class DiscountController extends AdminController
         $discounts = Discount::all();
         return view("admin.discount.index", compact('discounts'));
     }
-    
-    public function archive(){
-        $categories = Category::archive();
-        dd($categories);
-        return view("admin.category.archive", compact('categories'));
-    }
+
 
     public function create(){
         $products = Product::all();
