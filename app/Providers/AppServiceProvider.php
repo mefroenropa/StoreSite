@@ -20,6 +20,7 @@ class AppServiceProvider extends Provider
             }
             $wishlistCount = count(Auth::user()->wishlist()->get());
             $categoriesMaster = Category::all();
+            $user = Auth::user();
             
             return [
                 "carts"              => $carts,
@@ -27,8 +28,17 @@ class AppServiceProvider extends Provider
                 "sumAomuont"         => $sumAomuont,
                 "wishlistCount"      => $wishlistCount,
                 "categoriesMaster"   => $categoriesMaster,
+                "user"               => $user,
               
                
+            ];
+        });
+
+        Composer::view("auth.profile.layouts.master",  function (){
+            $user = Auth::user();
+            
+            return [
+                "user"               => $user,
             ];
         });
 
