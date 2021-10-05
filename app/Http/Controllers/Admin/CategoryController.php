@@ -43,7 +43,7 @@ class CategoryController extends AdminController
         $request = new Request();
 
         $inputs = $request->all();
-        $path = 'images/gallery/' . date('Y/M/d');
+        $path = 'images/categories/' . date('Y/M/d');
         $name = date('Y_m_d_H_i_s_') . rand(10, 99);
         $inputs['image'] = ImageUpload::UploadAndFitImage($request->file('image'), $path, $name, 640, 640);
         $inputs['user_id'] = Auth::user()->id;

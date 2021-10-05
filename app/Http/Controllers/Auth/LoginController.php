@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Requests\Auth\LoginRequest;
 use App\User;
 use System\Auth\Auth;
+use System\Session\Session;
 
 class LoginController
 {
@@ -16,6 +17,13 @@ class LoginController
     public function view()
     {
         return view("auth.login");
+    }
+
+    public function __construct()
+    {
+        if(!empty(Session::get('user'))){
+            Session::remove('user');
+        }
     }
 
 

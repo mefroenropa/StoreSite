@@ -13,6 +13,7 @@ use App\Wishlist;
 use System\Auth\Auth;
 use System\Database\DBBuilder\DBBuilder;
 use System\Request\Request;
+use System\Session\Session;
 
 class HomeController extends Controller
 {
@@ -112,6 +113,7 @@ class HomeController extends Controller
 
     public function wishlist()
     {
+      
         $wishlist = Auth::user()->wishlist()->get();
 
         return view('app.wishlist', compact('wishlist'));
@@ -119,6 +121,10 @@ class HomeController extends Controller
 
     public function wishlistAdd($id)
     {
+        if(Auth::user()->user_type == "guest"){
+            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            return back();
+        }
         $wishlist = Wishlist::where('product_id', $id)->where('user_id', Auth::user()->id)->get()[0];
         if ($wishlist == null) {
 
