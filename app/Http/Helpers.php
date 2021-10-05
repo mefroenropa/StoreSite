@@ -81,6 +81,14 @@ function paginateUrl($page){
     }
     
 }
+function sidebarActive($url, $contain = true)
+{
+    if ($contain)
+        return (strpos(currentUrl(), $url) === 0) ? 'active' : '';
+    else
+        return  $url === currentUrl() ? 'active' : '';
+}
+
 
 function getCaller($name, $value){
 
