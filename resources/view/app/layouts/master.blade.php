@@ -9,7 +9,10 @@
 
 <body>
 
-
+    <?php if(errorExists('Unauthorized')){  ?>
+        <script> showError(); </script>
+        
+    <?php } ?>
     <!-- HEADER -->
     <header>
         <!-- TOP HEADER -->
@@ -21,7 +24,7 @@
                     <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
                 </ul>
                 <ul class="header-links pull-right">
-                   <li><a href="#"><i class="fa fa-user-o"></i> پروفایل من </a></li>
+                   <?= $user->id != 1 ? '<li><a href="'.route('profile.view').'"><i class="fa fa-user-o"></i> پروفایل من </a></li>' : '<li><a href="'.route('auth.login.view').'"><i class="fa fa-user-o"></i> وارد شوید </a></li>' ?>
                 </ul>
             </div>
         </div>

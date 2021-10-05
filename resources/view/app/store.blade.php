@@ -55,7 +55,7 @@
 								<a href="<?= route('product.products', [$categoryChild->englishName]) ?>">
 											
 								<li class="text-left"> --><?= $categoryChild->name ?>
-										<small>(<?= count($cateogry->products()->get()) ?>)</small>
+										<small>(<?= count($categoryChild->products()->get()) ?>)</small>
 											
 									</li>
 							</a>
@@ -153,7 +153,7 @@
                                             </div>
                                             <div class="product-body">
                                                 <p class="product-category"><?= $product->category()->name ?></p>
-                                                <h3 class="product-name"><a href="<?= route('view.plus', [$product->id]) ?>"><?= $product->title ?></a></h3>
+                                                <h3 class="product-name" title="<?= $product->title?>"><a href="<?= route('view.plus', [$product->id]) ?>"><?= substr($product->title, 0, 40) ?>...</a></h3>
                                                 <h4 class="product-price"> تومان <?= $product->amount ?> <?= $product->discount != null ? ' <del class="product-old-price"> '.$product->discount.' تومان </del>' : '';?> </h4>
                                                 <div class="product-rating">
                                                     <?= count($product->comments()->get()) ?> نفر

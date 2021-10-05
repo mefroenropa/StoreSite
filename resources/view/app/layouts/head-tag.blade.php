@@ -30,3 +30,15 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    function showError(){
+        Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'لطفا اپتدا وارد حساب کاربری خود شوید',
+      footer: '<a href="/login">ورود</a>'
+    });
+    }
+    
+    </script>

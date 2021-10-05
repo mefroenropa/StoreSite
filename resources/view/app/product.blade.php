@@ -72,7 +72,6 @@
 								<h3 class="product-price"><?= $product->amount ?> <?= $product->discount != null ? '<del class="product-old-price">'.$product->discount.' تومان </del>' : '';?> </h3>
 								<?= $product->storeCount() >= 1 ? ' <span class="product-available">موجود در انبار </span>' : ' <span class="product-available"> ناموجود </span>'; ?>
 							</div>
-							<?= substr(html($product->body), 0 , 60) . " ادامه دارد ... " ?> <br>
 							<!--
 
 							<div class="product-options">
@@ -129,8 +128,8 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">توظیحات</a></li>
-								<li><a data-toggle="tab" href="#tab2">مشخصات فنی</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab2">مشخصات فنی</a></li>
+								<li ><a data-toggle="tab" href="#tab1">توظیحات</a></li>
 								<li><a data-toggle="tab" id="comments" href="#tab3">نظرات (<?= count($product->comments()->get()) ?>)</a></li>
 							</ul>
 							<!-- /product tab nav -->
@@ -138,7 +137,7 @@
 							<!-- product tab content -->
 							<div class="tab-content">
 								<!-- tab1  -->
-								<div id="tab1" class="tab-pane fade in active">
+								<div id="tab1" class="tab-pane fade in ">
 									<div class="row">
 										<div class="col-md-12">
 											<?= html($product->body) ?>
@@ -148,7 +147,7 @@
 								<!-- /tab1  -->
 
 								<!-- tab2  -->
-								<div id="tab2" class="tab-pane fade in">
+								<div id="tab2" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
 											<table class="table" dir="rtl">
@@ -156,7 +155,7 @@
 												<thead >
 													<tr>
 														<th class="text-right" scope="col">مشخصات </th>
-														<th class="text-right" scope="col">مقدار</th>
+														<th class="text-right" scope="col"></th>
 														
 													</tr>
 												</thead>
