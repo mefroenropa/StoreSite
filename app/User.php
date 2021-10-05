@@ -28,5 +28,8 @@ class User extends Model
         return $this->hasMany("\App\Cart", 'user_id', 'id');
     }
 
+    public function boughts(){
+        return $this->hasMany("\App\Bought", 'user_id', 'id');
+    }
 
 }
