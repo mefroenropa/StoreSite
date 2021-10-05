@@ -52,7 +52,7 @@ function flash($name, $message = null)
 
 function flashExists($name = null)
 {
-    return isset($_SESSION["temporary_flash"][$name]) === true ? true : false;
+    return isset($_SESSION["temporary_flash"][$name]) === true ? $_SESSION["temporary_flash"][$name] : false;
 
 
 }
