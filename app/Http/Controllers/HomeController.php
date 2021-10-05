@@ -7,6 +7,7 @@ use App\Cart;
 use App\Category;
 use App\Comment;
 use App\Gallery;
+use App\Newslitter;
 use App\Product;
 use App\View;
 use App\Wishlist;
@@ -20,10 +21,20 @@ class HomeController extends Controller
     public function index()
     {
         
-        $categories = Category::orderBy('created_at', 'asc')->limit(0, 3)->get();
+        $categories = Category::orderBy('created_at', 'desc')->limit(0, 3)->get();
         $newProducts = Product::orderBy('created_at', 'desc')->limit(0, 8)->get();
         $mustPopular = Product::orderBy('sold', 'desc')->limit(0, 8)->get();
-        return view('app.index', compact('newProducts', 'mustPopular', 'categories'));
+        $jitneyProducts = Product::orderBy('amount', 'asc')->limit(0, 8)->get();
+        return view('app.index', compact('newProducts', 'mustPopular', 'categories', 'jitneyProducts'));
+    }
+
+    public function newslitterRegister()
+    {
+        
+        $request = new Request;
+        $inputs = $request->all();
+        Newslitter::create($inputs);
+        return back();
     }
 
     public function products($englishName)
@@ -72,11 +83,14 @@ class HomeController extends Controller
             } else {
                 $id = $_GET['category'];
                 $brand = Brand::where('name', $_GET['brand'])->first();
-                $category = Category::find($id);
-                $products = Product::where('brand_id', $brand->id)->where('cat_id', $category->id)->get();
                 if ($id == 0) {
                     $products = Product::where('brand_id', $brand->id)->get();
+                }else{
+
+                    $category = Category::find($id);
+                    $products = Product::where('brand_id', $brand->id)->where('cat_id', $category->id)->get();
                 }
+      
             }
         }
         $categories = Category::where('parent_id',  0)->get();
@@ -114,7 +128,7 @@ class HomeController extends Controller
     public function wishlist()
     {
         if(Auth::user()->user_type == "guest"){
-            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            flash('error', 'اپتدا وارد یا ثبت نام کنید');
             return back();
         }
       
@@ -126,7 +140,7 @@ class HomeController extends Controller
     public function wishlistAdd($id)
     {
         if(Auth::user()->user_type == "guest"){
-            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            flash('error', 'اپتدا وارد یا ثبت نام کنید');
             return back();
         }
         $wishlist = Wishlist::where('product_id', $id)->where('user_id', Auth::user()->id)->get()[0];
@@ -139,12 +153,14 @@ class HomeController extends Controller
             Wishlist::create($inputs);
         }
 
-
+        flash('success', '!با موفقیت در لیست علاقه مندی ها ذخیره شد');
         return back();
     }
 
     public function wishlistDestory($id)
     {
+        flash('success', '!با موفقیت حذف شد');
+
         Wishlist::delete($id);
 
 
@@ -158,7 +174,7 @@ class HomeController extends Controller
     public function commentStore($id)
     {
         if(Auth::user()->user_type == "guest"){
-            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            flash('error', 'اپتدا وارد یا ثبت نام کنید');
             return back();
         }
         $request = new Request;
@@ -167,6 +183,8 @@ class HomeController extends Controller
         $inputs['user_id'] = Auth::user()->id;
         $inputs['star_count'] = (int)$request->star_count;
         Comment::create($inputs);
+        flash('success', '!با موفقیت ثبت شد');
+
         return back();
     }
 
@@ -174,7 +192,7 @@ class HomeController extends Controller
     public function cartList()
     {
         if(Auth::user()->user_type == "guest"){
-            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            flash('error', 'اپتدا وارد یا ثبت نام کنید');
             return back();
         }
         $carts = Auth::user()->carts()->get();
@@ -192,7 +210,7 @@ class HomeController extends Controller
     public function cartStore()
     {
         if(Auth::user()->user_type == "guest"){
-            error('Unauthorized', 'اپتدا وارد یا ثبت نام کنید');
+            flash('error', 'اپتدا وارد یا ثبت نام کنید');
             return back();
         }
         $request = new Request;
@@ -202,6 +220,8 @@ class HomeController extends Controller
             $inputs['user_id'] = Auth::user()->id;
             Cart::create($inputs);
         }
+        flash('success', '!با موفقیت به سبد خرید شما اضافه شد');
+
         return back();
     }
 
@@ -216,6 +236,8 @@ class HomeController extends Controller
     public function cartDestory($id)
     {
         Cart::delete($id);
+        flash('success', '!با موفقیت حذف شد');
+
         return back();
     }
 }
