@@ -19,30 +19,6 @@ class Bought extends Model
         return $this->belongsTo('\App\User', 'user_id', 'id');
     }
 
-    public function status(){
-        switch($this->status){
-            case 0:
-                return '<h4 class="alert alert-warning"> در حال پردازش </h4>';
-            break; 
-
-            case 1:
-                return '<h4 class="alert alert-primary"> در حال ارسال </h4>';
-            break; 
-
-            case 2:
-                return '<h4 class="alert alert-info"> تحویل داده شده </h4>';
-            break; 
-
-            case 3:
-                return '<h4 class="alert alert-danger"> مرجوعی </h4>';
-            break;
-        }
-    }
-
-    public function cart(){
-        return $this->belongsTo('\App\Cart', 'cart_id', 'id');
-    }
-
     public function product(){
         return $this->belongsTo('\App\Product', 'product_id', 'id');
     }
