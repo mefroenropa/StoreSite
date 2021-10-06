@@ -30,15 +30,15 @@
                           <th></th>
                         </tr>
                         
-                        <?php $numberPlus = 1;foreach ($boughts as $bought) { ?>
+                        <?php $numberPlus = 1; foreach ($carts as $cart) { ?>
                         <tr>
                           <td><?= $numberPlus ?></td>
-                          <td><img src="<?= asset($bought->product()->photo()->image) ?>" alt="" width="70px" height="70px"></td>
-                          <td><?= $bought->product()->title ?></td>
-                          <td><?= $bought->price ?></td>
-                          <td><?= $bought->cart()->count ?></td>
-                          <td><?= $bought->id ?></td>
-                          <td><?= $bought->status() ?></td>
+                          <td><img src="<?= asset($cart->product()->photo()->image) ?>" alt="" width="70px" height="70px"></td>
+                          <td><?= $cart->product()->title ?></td>
+                          <td><?= $cart->price ?></td>
+                          <td><?= $cart->count ?></td>
+                          <td><?= $cart->id ?></td>
+                          <td><?= $cart->bought()->status() ?></td>
                           <td>
                               <a href="#" class="btn btn-danger">کالا را نمیخوام</a>
                           </td>

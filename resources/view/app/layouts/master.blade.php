@@ -65,6 +65,7 @@
 										<option value="<?= $category->id ?>"><?= $category->name ?></option>
 										<?php } ?>
 									</select>  
+                                    <input type="hidden" name="brand" value="">
                                 <input class="input" name="search" placeholder="Search here">
                                 <button class="search-btn">Search</button>
                             </form>
@@ -113,11 +114,20 @@
                                     </div>
                                     <div class="cart-summary">
                                         <small><?= $cartCount ?> تعداد محصولات انتخاب شده</small><br>
-                                        <h5> جمع کل : <?= $sumAomuont ?></h5>
+                                        <h5> جمع کل : <?= $sumAmount ?></h5>
                                     </div>
                                     <div class="cart-btns">
-                                        <a href="<?= route('cart.list') ?>">دیدن کل سبد خرید</a>
-                                        <a href="<?= route('checkout') ?>">پرداخت نهایی  <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="<?= route('cart.list') ?>" class="pull-left">دیدن کل سبد خرید</a>
+                                        
+
+                                            <form action="<?= route('checkout') ?>" method="post">
+                                                <input type="hidden" name="sumAmount" value="<?= $sumAmount; ?>">
+                                                <input type="hidden" name="cart_id" value="<?= $cart_id; ?>">
+                                                <button class="btn btn-primary d-inline pull-right" style="width: 50%!important;padding: 11px;" type="submit"><i class="fa fa-arrow-circle-right"></i> پرداخت نهایی</button>
+                                                
+                                            </form>
+                                        
+                                     
                                     </div>
                                 </div>
                             </div>

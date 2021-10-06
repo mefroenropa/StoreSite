@@ -35,28 +35,28 @@
 					</thead>
 					<tbody>
 						
-						<?php foreach($boughts as $bought){ ?>
+						<?php foreach($carts as $cart){ ?>
 						<tr >
 							<td class="table-plus">
-								<img src="<?= asset($bought->product()->photo()->image)?>" width="70" height="70" alt="">
+								<img src="<?= asset($cart->product()->photo()->image)?>" width="70" height="70" alt="">
 							</td>
 							<td>
-                               <?= $bought->product()->title ?>
+                               <?= $cart->product()->title ?>
 							</td>
-							<td>  <?= $bought->status() ?></td>
-							<td> <?= fullUsername($bought->product()->user()) ?></td>
-							<td> <?= fullUsername($bought->user()) ?></td>
-							<td > <?= $bought->cart()->count ?></td>
-							<td> <?= $bought->price ?></td>
+							<td>  <?= $cart->status() ?></td>
+							<td> <?= fullUsername($cart->product()->user()) ?></td>
+							<td> <?= fullUsername($cart->user()) ?></td>
+							<td > <?= $cart->count ?></td>
+							<td> <?= $cart->price ?></td>
 							<td>
 								<div class="dropdown">
 									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 										<i class="dw dw-more"></i>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="<?= route('admin.sold.status', ['1', $bought->id]) ?>"><i class="dw dw-edit2"></i> تغیر وضیت به در حال ارسال</a>
-										<a class="dropdown-item" href="<?= route('admin.sold.status', ['2', $bought->id]) ?>"><i class="dw dw-edit2"></i> تعیر وضیت به تحویل داده شده</a>
-										<a class="dropdown-item" href="<?= route('admin.sold.status', ['3', $bought->id]) ?>"><i class="dw dw-edit2"></i> تغیر وضیت به مرجوعی</a>
+										<a class="dropdown-item" href="<?= route('admin.sold.status', ['1', $cart->id]) ?>"><i class="dw dw-edit2"></i> تغیر وضیت به در حال ارسال</a>
+										<a class="dropdown-item" href="<?= route('admin.sold.status', ['2', $cart->id]) ?>"><i class="dw dw-edit2"></i> تعیر وضیت به تحویل داده شده</a>
+										<a class="dropdown-item" href="<?= route('admin.sold.status', ['3', $cart->id]) ?>"><i class="dw dw-edit2"></i> تغیر وضیت به مرجوعی</a>
 									</div>
 								</div>
 							</td>

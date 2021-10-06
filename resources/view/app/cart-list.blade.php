@@ -68,10 +68,15 @@
                         <tbody >
                             <tr class="bg-warning">
                               <td><?= $allCount; ?></td>
-                              <td><?= $sumAomuont; ?></td>
+                              <td><?= $sumAmount; ?></td>
                               <td><?= $cartCount; ?></td>
                               <td class="text-right">
-                                  <button class="btn btn-success">پرداخت نهایی</button>
+                                <form action="<?= route('checkout') ?>" method="post">
+                                  <input type="hidden" name="sumAmount" value="<?= $sumAmount; ?>">
+                                  <input type="hidden" name="cart_id" value="<?= $cart_id; ?>">
+                                  <button type="submit" class="btn btn-success">پرداخت نهایی</button>
+                                
+                                </form>
                                   <button class="btn btn-danger">انصراف از خرید</button>
                               </td>
                             </tr>
