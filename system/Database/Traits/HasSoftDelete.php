@@ -46,6 +46,31 @@ trait HasSoftDelete{
         return [];
     }
 
+    protected function firstMethod($array = []){
+        if($this->sql == ''){
+            if(empty($array)){
+                $fields = $this->getTableName().'.*';
+            }
+            else{
+                foreach($array as $key => $field){
+                    $array[$key] = $this->getAttributeName($field);
+                }
+                $fields = implode(' , ', $array);
+            }
+            $this->setSql("SELECT $fields FROM ".$this->getTableName());
+            
+        }
+        
+        $this->setWhere("AND", $this->getAttributeName($this->deletedAt)." IS NULL");
+        $statement = $this->executeQuery();
+        $data = $statement->fetch();
+        if ($data){
+            return $this->arrayToAttributes($data);
+            
+        }
+        return [];
+    }
+
     protected function findArchiveMethod($id){
         $this->resetQuery();
         $this->setSql("SELECT ".$this->getTableName().".* FROM ".$this->getTableName());
