@@ -27,13 +27,12 @@ Route::delete('/wishlist/delete/{id}', 'HomeController@wishlistDestory', 'wishli
 Route::post('/cart/store', 'HomeController@cartStore', 'cart.store');
 Route::delete('/cart/delete/{id}', 'HomeController@cartDestory', 'cart.delete');
 Route::get('/cart-list', 'HomeController@cartList', 'cart.list');
-Route::get('/checkout', 'HomeController@checkout', 'checkout');
-
+Route::post('/checkout', 'HomeController@checkout', 'checkout');
+Route::get('/verify/{cart_id}/{amount}', 'HomeController@verify', 'verify');
 
 //////////////////////
 // home routes ended//
 //////////////////////
-
 
 //auth routes
 Route::get('/forgot', 'Auth\ForgotController@view', 'auth.forgot.view');
