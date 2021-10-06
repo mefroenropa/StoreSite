@@ -57,8 +57,8 @@ class ProfileController
 
     public function boughtShow()
     {
-        $boughts = Auth::user()->boughts()->get();
+        $carts = Auth::user()->carts()->where('isPaid', '1')->get();
 
-        return view('auth.profile.bought-list', compact('boughts'));
+        return view('auth.profile.bought-list', compact('carts'));
     }
 }

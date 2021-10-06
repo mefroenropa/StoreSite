@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Bought;
+use App\Cart;
 use System\Auth\Auth;
 use App\Http\Controllers\Admin\AdminController;
 
 class SoldController extends AdminController
 {
     public function index(){
-        $boughts = Bought::all();
-        return view("admin.sold.index", compact('boughts'));
+        $carts = Cart::where('isPaid', 1)->get();
+        return view("admin.sold.index", compact('carts'));
     }
 
     public function status($status, $id){
         $inputs = [];
         $inputs['id'] = $id;
         $inputs['status'] = $status;
-        Bought::update($inputs);
+        Cart::update($inputs);
         return back();
 
     }
