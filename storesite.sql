@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2021 at 10:36 AM
+-- Generation Time: Oct 06, 2021 at 10:09 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -30,14 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `bought` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
-  `product_id` bigint(20) NOT NULL,
-  `cart_id` bigint(20) NOT NULL,
+  `cart_id` text COLLATE utf8mb4_persian_ci NOT NULL,
   `price` bigint(20) NOT NULL,
-  `status` enum('0','1','2','3') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
+  `Authority` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `RefID` text COLLATE utf8mb4_persian_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+--
+-- Dumping data for table `bought`
+--
+
+INSERT INTO `bought` (`id`, `user_id`, `cart_id`, `price`, `Authority`, `RefID`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 3, '4,5', 39000000, '2121', '42542', '2021-10-05 14:49:06', '2021-10-05 16:22:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -77,7 +84,9 @@ CREATE TABLE `cart` (
   `user_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
   `count` bigint(20) NOT NULL,
-  `isPaid` enum('0','1') COLLATE utf8mb4_persian_ci NOT NULL,
+  `price` text COLLATE utf8mb4_persian_ci NOT NULL,
+  `status` enum('0','1','2','3') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
+  `isPaid` enum('0','1') COLLATE utf8mb4_persian_ci NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
@@ -106,11 +115,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `user_id`, `image`, `name`, `englishName`, `parent_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_09_44_15.jpg', 'دیجیتال', 'digital', 0, '2021-10-05 10:39:44', NULL, NULL),
+(2, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_09_44_15.jpg', 'دیجیتال', 'digital', 0, '2021-10-05 10:39:44', '2021-10-05 19:21:30', NULL),
 (3, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_10_39_10.jpg', 'خانگی', 'Homemade', 0, '2021-10-05 10:40:40', NULL, NULL),
 (4, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_11_24_33.jpg', 'لپ تاپ', 'loptop', 2, '2021-10-05 10:41:25', NULL, NULL),
 (5, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_12_30_99.jpg', 'تبلت', 'tablet', 2, '2021-10-05 10:42:30', NULL, NULL),
-(6, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_13_10_83.png', 'مبایل', 'mobile', 2, '2021-10-05 10:43:11', NULL, NULL),
+(6, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_13_10_83.png', 'مبایل', 'mobile', 2, '2021-10-05 10:43:11', '2021-10-05 19:45:26', NULL),
 (7, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_14_31_62.jpg', 'یخجال', 'Refrigerator', 3, '2021-10-05 10:44:31', NULL, NULL),
 (8, 2, '/images/gallery/2021/Oct/05/2021_10_05_09_16_07_84.jpg', 'تلوزیون', 'Television', 2, '2021-10-05 10:46:08', NULL, NULL);
 
@@ -143,7 +152,11 @@ INSERT INTO `comments` (`id`, `user_id`, `product_id`, `parent_id`, `comment`, `
 (1, 2, 5, NULL, 'اونایی که میگن کیفیت نداره از دیجیتال توی خود تلویزیون استفاده نکنن یه دستگاه جداگانه بخرن و کابل hdmi رو نصب کنن اونوقت میفهمین چه کیفیت تصویری میده از نظر کیفیت قابل قبوله سنگین نیست راحت قابل حمل هستش سرعتش خوبه روش برنامه و بازی نصب کردم به راحتی جواب میده انتظارات رو براورده میکنه', '1', 0, 0, '5', '2021-10-05 12:02:44', '2021-10-05 12:05:16', NULL),
 (2, 2, 7, NULL, 'من ۸ کیلویی خریدم خیلی صدای کمی موقع خشک کردن داره و این عالیه چون لباسشویی قبلی موقع خشک کردن صدایی شبیه بلند شدن هواپیما از باند فرودگاه داشت', '1', 0, 0, '4', '2021-10-05 12:03:32', '2021-10-05 12:05:20', NULL),
 (3, 2, 6, NULL, 'برا مغازه گرفتم و خیلی کم صداست و خنکی خوبی داره دوماهه روشنه و جا یخیش هنوز یخ نبسته و نکته جالبی که داره، زیر جا یخی یه سینی گزاشتن برای آب کردن یخ ها که رو زمین نریزه. درجه خنکی هم رو ۳ هست و آب تو جا یخی سریع یخ میزنه و داخل یخچال هم سریع خنک میشه کاملا کارش مث یخچال الجی که خونه دارم هست و خیلی راضیم. پشتش هم خیلی داغ نمیشه', '1', 0, 0, '3', '2021-10-05 12:04:42', '2021-10-05 12:05:25', NULL),
-(4, 2, 4, NULL, 'خیلی عالیه', '1', 0, 0, '5', '2021-10-05 12:05:01', '2021-10-05 12:05:29', NULL);
+(4, 2, 4, NULL, 'خیلی عالیه', '1', 0, 0, '5', '2021-10-05 12:05:01', '2021-10-05 12:05:29', NULL),
+(5, 2, 2, NULL, 'بسیار گوشی خوبی بود کیفیت دوربینش عالی بود', '1', 0, 0, '4', '2021-10-05 13:41:59', '2021-10-05 13:43:41', NULL),
+(6, 3, 7, NULL, 'خیلی بد نیست خوشم اومد', '1', 0, 0, '5', '2021-10-05 20:55:27', '2021-10-05 20:56:42', NULL),
+(7, 3, 7, NULL, 'صداش خیلی کمه عالی', '1', 0, 0, '5', '2021-10-05 20:56:03', '2021-10-05 20:56:47', NULL),
+(8, 2, 5, NULL, 'guygygy', '0', 0, 0, '5', '2021-10-05 21:21:16', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -252,6 +265,13 @@ CREATE TABLE `newsletters` (
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
 
+--
+-- Dumping data for table `newsletters`
+--
+
+INSERT INTO `newsletters` (`id`, `email`, `isActive`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'mefroen@gmail.com', '0', '2021-10-05 20:16:45', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -334,7 +354,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `first_name`, `last_name`, `avatar`, `password`, `status`, `is_active`, `verify_token`, `user_type`, `remember_token`, `remember_token_expire`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Guest@gmail.com', 'مهمان', '220044', '/images/avatar/2021/Oct/05/2021_10_05_08_37_09_76.jpg', '$2y$10$NBiefWTu4Ks2.ayTud.6r.FK/rxRaInnAwtDMHT0xa7Yjv9cG51C.', 0, 1, '5f61b5831c2caed80e6adacd2aaae654800e1bca1764fcc0993b2e0a00a08694', 'guest', NULL, NULL, '2021-10-05 10:07:09', NULL, NULL),
-(2, 'mefroen@gmail.com', 'ali', 'reza', '/images/avatar/2021/Oct/05/2021_10_05_09_07_18_62.jpg', '$2y$10$J5f06b7kBUBUub.rgOM04.N5c0.bRz80k.Brlxqv5u5Y7BNNAcU.O', 0, 1, 'f384691fb816cdb3f5b7376ec0dd023859137c1e26df41ce10c0af8b18388154', 'admin', NULL, NULL, '2021-10-05 10:37:19', '2021-10-05 10:37:37', NULL);
+(2, 'mefroen@gmail.com', 'ali', 'reza', '/images/avatar/2021/Oct/05/2021_10_05_09_07_18_62.jpg', '$2y$10$J5f06b7kBUBUub.rgOM04.N5c0.bRz80k.Brlxqv5u5Y7BNNAcU.O', 0, 1, 'f384691fb816cdb3f5b7376ec0dd023859137c1e26df41ce10c0af8b18388154', 'admin', NULL, NULL, '2021-10-05 10:37:19', '2021-10-05 10:37:37', NULL),
+(3, 'javadiali631@gmail.com', 'alireza', 'javadi', '/images/avatar/2021/Oct/05/2021_10_05_15_22_27_63.png', '$2y$10$Txnucac.idERZg/4lv0EOOiTTXeZa56FMYbun7Uj58FtM7Q9tJlcG', 0, 1, 'c34385979e68fa8df0022c3b14f03a43823356a9c0de3d1f50c8aebbd8cbe36a', 'user', NULL, NULL, '2021-10-05 13:48:07', '2021-10-05 16:52:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -357,13 +378,13 @@ CREATE TABLE `views` (
 --
 
 INSERT INTO `views` (`id`, `product_id`, `ip_address`, `view_count`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, '::1', 2, '2021-10-05 10:57:38', '2021-10-05 10:58:28', NULL),
-(2, 2, '::1', 2, '2021-10-05 11:06:32', '2021-10-05 12:00:02', NULL),
-(3, 3, '::1', 3, '2021-10-05 11:15:04', '2021-10-05 11:39:24', NULL),
-(4, 4, '::1', 2, '2021-10-05 11:20:37', '2021-10-05 12:04:54', NULL),
-(5, 5, '::1', 2, '2021-10-05 11:37:26', '2021-10-05 12:01:43', NULL),
-(6, 6, '::1', 2, '2021-10-05 11:45:04', '2021-10-05 12:04:35', NULL),
-(7, 7, '::1', 3, '2021-10-05 11:55:27', '2021-10-05 12:03:26', NULL);
+(1, 1, '::1', 4, '2021-10-05 10:57:38', '2021-10-05 13:44:33', NULL),
+(2, 2, '::1', 4, '2021-10-05 11:06:32', '2021-10-06 11:25:36', NULL),
+(3, 3, '::1', 6, '2021-10-05 11:15:04', '2021-10-06 11:37:57', NULL),
+(4, 4, '::1', 5, '2021-10-05 11:20:37', '2021-10-06 11:31:43', NULL),
+(5, 5, '::1', 5, '2021-10-05 11:37:26', '2021-10-06 11:36:36', NULL),
+(6, 6, '::1', 7, '2021-10-05 11:45:04', '2021-10-06 11:27:52', NULL),
+(7, 7, '::1', 12, '2021-10-05 11:55:27', '2021-10-06 11:36:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -385,7 +406,13 @@ CREATE TABLE `wishlist` (
 --
 
 INSERT INTO `wishlist` (`id`, `product_id`, `user_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 2, '2021-10-05 10:57:55', NULL, '2021-10-05 10:58:22');
+(1, 1, 2, '2021-10-05 10:57:55', NULL, '2021-10-05 10:58:22'),
+(2, 6, 3, '2021-10-05 15:56:21', NULL, '2021-10-05 15:56:29'),
+(3, 7, 3, '2021-10-05 16:26:02', NULL, '2021-10-05 20:54:32'),
+(4, 6, 3, '2021-10-05 20:42:04', NULL, '2021-10-05 20:54:35'),
+(5, 5, 3, '2021-10-05 20:43:15', NULL, '2021-10-05 20:54:37'),
+(6, 7, 2, '2021-10-05 21:20:42', NULL, '2021-10-05 21:50:21'),
+(7, 7, 3, '2021-10-06 11:12:35', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -396,9 +423,7 @@ INSERT INTO `wishlist` (`id`, `product_id`, `user_id`, `created_at`, `updated_at
 --
 ALTER TABLE `bought`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `cart_id` (`cart_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `brands`
@@ -498,7 +523,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `bought`
 --
 ALTER TABLE `bought`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -510,19 +535,19 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `discounts`
@@ -540,7 +565,7 @@ ALTER TABLE `galleries`
 -- AUTO_INCREMENT for table `newsletters`
 --
 ALTER TABLE `newsletters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -558,7 +583,7 @@ ALTER TABLE `store`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `views`
@@ -570,7 +595,7 @@ ALTER TABLE `views`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -580,9 +605,7 @@ ALTER TABLE `wishlist`
 -- Constraints for table `bought`
 --
 ALTER TABLE `bought`
-  ADD CONSTRAINT `bought_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `bought_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `bought_ibfk_4` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`);
+  ADD CONSTRAINT `bought_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `brands`
