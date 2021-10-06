@@ -11,38 +11,38 @@ class AppServiceProvider extends Provider
 {
     public function boot()
     {
-        Composer::view("app.layouts.master",  function (){
+        Composer::view("app.layouts.master",  function () {
             $carts = Cart::where('user_id', Auth::user()->id)->where('isPaid', 0)->get();
             $cartCount = count(Cart::where('user_id', Auth::user()->id)->where('isPaid', 0)->get());
-            $sumAomuont = 0;
-            foreach($carts as $cartItem){
-                $sumAomuont += (int)$cartItem->product()->amount;
+            $sumAmount = 0;
+            $cart_id = '';
+            foreach ($carts as $cartItem) {
+                $cart_id .= $cartItem->id . ",";
+                $sumAmount += (int)$cartItem->product()->amount;
             }
             $wishlistCount = count(Auth::user()->wishlist()->get());
             $categoriesMaster = Category::all();
             $user = Auth::user();
-            
+
             return [
                 "carts"              => $carts,
                 "cartCount"          => $cartCount,
-                "sumAomuont"         => $sumAomuont,
+                "cart_id"            => $cart_id,
+                "sumAmount"          => $sumAmount,
                 "wishlistCount"      => $wishlistCount,
                 "categoriesMaster"   => $categoriesMaster,
                 "user"               => $user,
-              
-               
+
+
             ];
         });
 
-        Composer::view("auth.profile.layouts.master",  function (){
+        Composer::view("auth.profile.layouts.master",  function () {
             $user = Auth::user();
-            
+
             return [
                 "user"               => $user,
             ];
         });
-
-    
-
     }
 }
