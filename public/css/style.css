@@ -588,7 +588,7 @@ textarea.input {
   margin: 0px -17px -17px;
 }
 
-.cart-dropdown .cart-btns>a {
+.cart-dropdown .cart-btns>a  {
   display: inline-block;
   width: calc(50% - 0px);
   padding: 12px;
@@ -599,6 +599,8 @@ textarea.input {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
+
+
 
 .cart-dropdown .cart-btns>a:first-child {
   margin-right: -4px;
